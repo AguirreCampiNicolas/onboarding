@@ -77,3 +77,6 @@ end
 gem "sassc-rails"
 
 gem "letter_opener"
+
+# Pagination gem
+gem "kaminari"
