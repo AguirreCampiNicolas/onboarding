@@ -32,4 +32,6 @@ Rails.application.routes.draw do
   end
 
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
+
+  resources :products, only: [:index, :show]
 end
