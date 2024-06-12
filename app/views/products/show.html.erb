@@ -1,0 +1,14 @@
+<!-- app/views/products/show.html.erb -->
+<h1><%= @product.name %></h1>
+<p>Precio: <%= number_to_currency(@product.price) %></p>
+<p>Valoración: <%= @product.rate %>/5</p>
+<p><%= @product.description %></p>
+<p>Vegano o Vegetariano: <%= @product.vegan_or_vegetarian ? 'Sí' : 'No' %></p>
+<p>Sin Azúcar: <%= @product.sugar_free ? 'Sí' : 'No' %></p>
+<p>Sin TACC: <%= @product.no_tacc ? 'Sí' : 'No' %></p>
+<p>Aperitivo: <%= @product.apetizer ? 'Sí' : 'No' %></p>
+<p>Para Compartir: <%= @product.for_sharing ? 'Sí' : 'No' %></p>
+<p>Proveedor: <%= @product.user.email %></p>
+
+<%= button_to "Cancelar", home_index_path, method: :get, class: "btn btn-primary" %>
+
