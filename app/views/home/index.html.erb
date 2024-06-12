@@ -12,6 +12,7 @@
       <p>Aperitivo: <%= product.apetizer ? 'Sí' : 'No' %></p>
       <p>Para Compartir: <%= product.for_sharing ? 'Sí' : 'No' %></p>
       <p>Proveedor: <%= product.user.email %></p>
+      <p>Servicio: <%=product.service.name%></p>
     </li>
   <% end %>
 </ul>
