@@ -1,4 +1,33 @@
 <h1>Productos</h1>
+
+<div class="filters">
+  <%= form_with url: filter_products_path, method: :get, local: true do |form| %>
+    <div>
+      <%= form.label :for_sharing, "Para Compartir" %>
+      <%= form.check_box :for_sharing, { checked: params[:for_sharing] == '1' }, '1', '0' %>
+    </div>
+    <div>
+      <%= form.label :vegan_or_vegetarian, "Vegano/Vegetariano" %>
+      <%= form.check_box :vegan_or_vegetarian, { checked: params[:vegan_or_vegetarian] == '1' }, '1', '0' %>
+    </div>
+    <div>
+      <%= form.label :sugar_free, "Sin Azúcar" %>
+      <%= form.check_box :sugar_free, { checked: params[:sugar_free] == '1' }, '1', '0' %>
+    </div>
+    <div>
+      <%= form.label :no_tacc, "Sin TACC" %>
+      <%= form.check_box :no_tacc, { checked: params[:no_tacc] == '1' }, '1', '0' %>
+    </div>
+    <div>
+      <%= form.label :apetizer, "Aperitivo" %>
+      <%= form.check_box :apetizer, { checked: params[:apetizer] == '1' }, '1', '0' %>
+    </div>
+    <div>
+      <%= form.submit "Filtrar" %>
+    </div>
+  <% end %>
+</div>
+
 <ul>
   <% @products.each do |product| %>
     <li>
