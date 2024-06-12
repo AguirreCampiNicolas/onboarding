@@ -1,11 +1,7 @@
-class HomeController < ApplicationController
+class ProductsController < ApplicationController
   before_action :authenticate_client!
 
   def index
-    @products = Product.page(params[:page]).per(10)
-  end
-
-  def filter
     @products = Product.all
 
     filter_params.each do |key, value|
