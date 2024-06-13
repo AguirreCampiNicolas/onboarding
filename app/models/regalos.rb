@@ -1,0 +1,2 @@
+class Regalos < Product
+end

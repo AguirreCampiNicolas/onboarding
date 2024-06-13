@@ -16,11 +16,11 @@ User.destroy_all
 supplier1 = Supplier.create(email: 'supplier1@example.com', password: 'asdasd', password_confirmation: 'asdasd')
 supplier2 = Supplier.create(email: 'supplier2@example.com', password: 'asdasd', password_confirmation: 'asdasd')
 
-# Servsices
-# servsice1 = Servisce.create(name: 'Rregalos')
-# servisce2 = Servisce.create(name: 'Catering')
-# servisce3 = Servisce.create(name: 'Merchandising')
-# servsice4 = Sesrvice.create(name: 'Eventos')
+# Services
+regalos = 'Regalos'
+catering = 'Catering'
+merchandising = 'Merchandising'
+eventos = 'Eventos'
 
 # Clients
 Client.create([
@@ -50,7 +50,8 @@ Product.create([
     no_tacc: true,
     apetizer: true,
     for_sharing: false,
-    user: supplier1
+    user: supplier1,
+    type: regalos
   },
   {
     name: "Pizza Margherita",
@@ -62,7 +63,8 @@ Product.create([
     no_tacc: false,
     apetizer: false,
     for_sharing: true,
-    user: supplier1
+    user: supplier1,
+    type: catering
   },
   {
     name: "Tacos al Pastor",
@@ -74,7 +76,8 @@ Product.create([
     no_tacc: true,
     apetizer: false,
     for_sharing: true,
-    user: supplier2
+    user: supplier2,
+    type: regalos
   },
   {
     name: "Sushi Variado",
@@ -86,7 +89,8 @@ Product.create([
     no_tacc: false,
     apetizer: true,
     for_sharing: true,
-    user: supplier2
+    user: supplier2,
+    type: regalos
   },
   {
     name: "Hamburguesa Clásica",
@@ -98,7 +102,8 @@ Product.create([
     no_tacc: false,
     apetizer: false,
     for_sharing: false,
-    user: supplier1
+    user: supplier1,
+    type: regalos
   },
   {
     name: "Pasta Alfredo",
@@ -110,7 +115,8 @@ Product.create([
     no_tacc: false,
     apetizer: false,
     for_sharing: false,
-    user: supplier1
+    user: supplier1,
+    type: regalos
   },
   {
     name: "Falafel",
@@ -122,7 +128,8 @@ Product.create([
     no_tacc: true,
     apetizer: true,
     for_sharing: true,
-    user: supplier2
+    user: supplier2,
+    type: regalos
   },
   {
     name: "Pad Thai",
@@ -134,7 +141,8 @@ Product.create([
     no_tacc: true,
     apetizer: false,
     for_sharing: true,
-    user: supplier2
+    user: supplier2,
+    type: regalos
   },
   {
     name: "Burrito de Pollo",
@@ -146,7 +154,8 @@ Product.create([
     no_tacc: false,
     apetizer: false,
     for_sharing: true,
-    user: supplier1
+    user: supplier1,
+    type: catering
   },
   {
     name: "Enchiladas Verdes",
@@ -158,7 +167,8 @@ Product.create([
     no_tacc: false,
     apetizer: false,
     for_sharing: true,
-    user: supplier1
+    user: supplier1,
+    type: catering
   },
   {
     name: "Empanadas de Carne",
@@ -170,7 +180,8 @@ Product.create([
     no_tacc: false,
     apetizer: true,
     for_sharing: true,
-    user: supplier2
+    user: supplier2,
+    type: regalos
   },
   {
     name: "Gnocchi de Papa",
@@ -182,7 +193,8 @@ Product.create([
     no_tacc: false,
     apetizer: false,
     for_sharing: false,
-    user: supplier2
+    user: supplier2,
+    type: regalos
   },
   {
     name: "Churrasco",
@@ -194,7 +206,8 @@ Product.create([
     no_tacc: true,
     apetizer: false,
     for_sharing: false,
-    user: supplier1
+    user: supplier1,
+    type: regalos
   },
   {
     name: "Paella",
@@ -206,7 +219,8 @@ Product.create([
     no_tacc: true,
     apetizer: false,
     for_sharing: true,
-    user: supplier1
+    user: supplier1,
+    type: catering
   },
   {
     name: "Bruschetta",
@@ -218,7 +232,8 @@ Product.create([
     no_tacc: false,
     apetizer: true,
     for_sharing: true,
-    user: supplier2
+    user: supplier2,
+    type: regalos
   },
   {
     name: "Ravioles de Espinaca",
@@ -230,7 +245,8 @@ Product.create([
     no_tacc: false,
     apetizer: false,
     for_sharing: false,
-    user: supplier2
+    user: supplier2,
+    type: regalos
   },
   {
     name: "Tiramisu",
@@ -242,7 +258,8 @@ Product.create([
     no_tacc: false,
     apetizer: false,
     for_sharing: true,
-    user: supplier1
+    user: supplier1,
+    type: catering
   },
   {
     name: "Sopa de Miso",
@@ -254,7 +271,8 @@ Product.create([
     no_tacc: true,
     apetizer: true,
     for_sharing: true,
-    user: supplier1
+    user: supplier1,
+    type: catering
   },
   {
     name: "Curry de Pollo",
@@ -266,7 +284,8 @@ Product.create([
     no_tacc: true,
     apetizer: false,
     for_sharing: true,
-    user: supplier2
+    user: supplier2,
+    type: regalos
   },
   {
     name: "Salteado de Vegetales",
@@ -278,7 +297,8 @@ Product.create([
     no_tacc: true,
     apetizer: false,
     for_sharing: true,
-    user: supplier2
+    user: supplier2,
+    type: regalos
   },
   {
     name: "Pollo a la Parrilla",
@@ -290,7 +310,8 @@ Product.create([
     no_tacc: true,
     apetizer: false,
     for_sharing: false,
-    user: supplier1
+    user: supplier1,
+    type: regalos
   },
   {
     name: "Ceviche",
@@ -302,7 +323,8 @@ Product.create([
     no_tacc: true,
     apetizer: true,
     for_sharing: true,
-    user: supplier1
+    user: supplier1,
+    type: catering
   },
   {
     name: "Quesadilla de Queso",
@@ -314,7 +336,8 @@ Product.create([
     no_tacc: false,
     apetizer: true,
     for_sharing: true,
-    user: supplier2
+    user: supplier2,
+    type: regalos
   },
   {
     name: "Moussaka",
@@ -326,7 +349,8 @@ Product.create([
     no_tacc: false,
     apetizer: false,
     for_sharing: true,
-    user: supplier2
+    user: supplier2,
+    type: regalos
   },
   {
     name: "Arepas",
@@ -338,7 +362,8 @@ Product.create([
     no_tacc: true,
     apetizer: true,
     for_sharing: true,
-    user: supplier1
+    user: supplier1,
+    type: catering
   },
   {
     name: "Shakshuka",
@@ -350,7 +375,8 @@ Product.create([
     no_tacc: true,
     apetizer: false,
     for_sharing: true,
-    user: supplier1
+    user: supplier1,
+    type: catering
   },
   {
     name: "Panqueques",
@@ -362,7 +388,8 @@ Product.create([
     no_tacc: false,
     apetizer: false,
     for_sharing: true,
-    user: supplier2
+    user: supplier2,
+    type: regalos
   },
   {
     name: "Samosas",
@@ -374,7 +401,8 @@ Product.create([
     no_tacc: true,
     apetizer: true,
     for_sharing: true,
-    user: supplier2
+    user: supplier2,
+    type: regalos
   },
   {
     name: "Polenta",
@@ -386,7 +414,8 @@ Product.create([
     no_tacc: true,
     apetizer: false,
     for_sharing: true,
-    user: supplier1
+    user: supplier1,
+    type: catering
   },
   {
     name: "Baklava",
