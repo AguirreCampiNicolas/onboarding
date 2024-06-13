@@ -1,5 +1,4 @@
-// Entry point for the build script in your package.json
-import "@hotwired/turbo-rails"
-import "./controllers"
-import Turbolinks from "turbolinks"
-Turbolinks.start()
+// Configure your import map in config/importmap.rb. Read more: https://github.com/rails/importmap-rails
+import 'flowbite';
+import 'flowbite-datepicker';
+import 'flowbite/dist/datepicker.turbo.js';
