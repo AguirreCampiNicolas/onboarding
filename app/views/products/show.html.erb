@@ -10,5 +10,5 @@
 <p>Proveedor: <%= @product.user.email %></p>
 
 <%= button_to "Comprar", new_order_path, method: :get, params: {product_id: @product.id}, class: "btn btn-primary" %>
-<%= button_to "Cancelar", home_index_path, method: :get, class: "btn btn-primary" %>
+<%= button_to "Cancelar", products_path, method: :get, class: "btn btn-primary" %>
 

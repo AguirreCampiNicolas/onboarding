@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_06_12_173548) do
+ActiveRecord::Schema[7.1].define(version: 2024_06_13_132517) do
   create_table "orders", force: :cascade do |t|
     t.integer "quantity", default: 1, null: false
     t.integer "product_id", null: false
@@ -46,25 +46,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_12_173548) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "user_id", null: false
-    t.integer "service_id", null: false
-    t.index ["service_id"], name: "index_products_on_service_id"
+    t.string "type"
     t.index ["user_id"], name: "index_products_on_user_id"
-  end
-
-  create_table "service_users", force: :cascade do |t|
-    t.integer "service_id", null: false
-    t.integer "user_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["service_id"], name: "index_service_users_on_service_id"
-    t.index ["user_id"], name: "index_service_users_on_user_id"
-  end
-
-  create_table "services", force: :cascade do |t|
-    t.string "name", default: "", null: false
-    t.string "description", default: ""
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -84,8 +67,5 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_12_173548) do
 
   add_foreign_key "orders", "products"
   add_foreign_key "orders", "users"
-  add_foreign_key "products", "services"
   add_foreign_key "products", "users"
-  add_foreign_key "service_users", "services"
-  add_foreign_key "service_users", "users"
 end
