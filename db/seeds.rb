@@ -13,8 +13,8 @@ Product.destroy_all
 User.destroy_all
 
 # Suppliers
-supplier1 = Supplier.create(email: 'supplier1@example.com', password: 'asdasd', password_confirmation: 'asdasd')
-supplier2 = Supplier.create(email: 'supplier2@example.com', password: 'asdasd', password_confirmation: 'asdasd')
+supplier1 = Supplier.create(email: 'supplier1@gmail.com', password: 'asdasd', password_confirmation: 'asdasd')
+supplier2 = Supplier.create(email: 'supplier2@gmail.com', password: 'asdasd', password_confirmation: 'asdasd')
 
 # Services
 regalos = 'Regalos'
@@ -25,13 +25,17 @@ eventos = 'Eventos'
 # Clients
 Client.create([
   {
-    email: 'client1@example.com',
+    email: 'client1@gmail.com',
+    name: 'client1',
+    phone: '095114540',
     password: 'asdasd',
     password_confirmation: 'asdasd',
     company_name: 'c1 company'
   },
   {
-    email: 'client2@example.com',
+    email: 'client2@gmail.com',
+    name: 'client2',
+    phone: '095114541',
     password: 'asdasd',
     password_confirmation: 'asdasd',
     company_name: 'c2 company'

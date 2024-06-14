@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'clients/show'
   root to: "products#index"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
@@ -28,4 +29,7 @@ Rails.application.routes.draw do
 
   # Products
   resources :products, only: [:index, :show]
+
+  # Client
+  resources :clients, only: [:show, :update, :destroy]
 end
