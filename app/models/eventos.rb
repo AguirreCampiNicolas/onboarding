@@ -1,0 +1,2 @@
+class Eventos < Product
+end

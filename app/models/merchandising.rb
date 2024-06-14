@@ -1,0 +1,2 @@
+class Merchandising < Product
+end
