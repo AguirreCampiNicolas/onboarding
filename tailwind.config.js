@@ -21,6 +21,9 @@ module.exports = {
         'planit-grey-4': '#FBFBFB',
         'planit-white': '#FFFFFF'
       },
+      boxShadow: {
+        'planit': '2px 2px 10px 0px #00000040'
+      },
       fontFamily: {
         sans: ['Poppins']
       },
@@ -45,17 +48,33 @@ module.exports = {
         'h4-sm': ['16px', { lineHeight: '130%', letterSpacing: '-0.01em', fontWeight: '500' }],
         'h5-sm': ['14px', { lineHeight: '130%', letterSpacing: '-0.01em', fontWeight: '400' }],
         'h6-sm': ['12px', { lineHeight: '130%', letterSpacing: '-0.01em', fontWeight: '400' }],
-        'button-sm': ['14px', { lineHeight: '130%', letterSpacing: '-0.01em', fontWeight: '600' }],
+        'button-sm': ['14px', { lineHeight: '130%', letterSpacing: '-0.01em', fontWeight: '600' }]
       },
       padding: {
         '60': '15rem'
+      },
+      width: {
+        '11': '2.75rem',
+        '12': '3rem',
+        '13': '3.25rem',
+        '14': '3.5rem',
+        '15': '3.75rem',
+        '16': '4rem',
+        '17': '4.25rem',
+        '18': '4.5rem',
+        '19': '4.75rem',
+        '20': '5rem',
+        '21': '5.25rem',
+        '22': '5.5rem',
+        '23': '5.75rem',
+        '24': '6rem',
       }
     },
     screens: {
       'xl':	'1280px',
       'lg': '1024px',
       'md': '768px',
-      'sm': '400px',
+      'sm': '400px'
     },
   },
   plugins: [
