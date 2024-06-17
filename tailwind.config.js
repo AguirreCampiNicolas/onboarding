@@ -13,7 +13,13 @@ module.exports = {
       },
       colors: {
         'planit-dark-blue': '#0F58B7',
-        'planit-light-blue': '#9BC7FF'
+        'planit-light-blue': '#9BC7FF',
+        'planit-black': '#1C1C1C',
+        'planit-grey-1': '#7D7D7D',
+        'planit-grey-2': '#B3B3B3',
+        'planit-grey-3': '#EEEEEE',
+        'planit-grey-4': '#FBFBFB',
+        'planit-white': '#FFFFFF'
       },
       fontFamily: {
         sans: ['Poppins']
@@ -41,6 +47,9 @@ module.exports = {
         'h6-sm': ['12px', { lineHeight: '130%', letterSpacing: '-0.01em', fontWeight: '400' }],
         'button-sm': ['14px', { lineHeight: '130%', letterSpacing: '-0.01em', fontWeight: '600' }],
       },
+      padding: {
+        '60': '15rem'
+      }
     },
     screens: {
       'xl':	'1280px',
