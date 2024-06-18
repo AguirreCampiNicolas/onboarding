@@ -28,7 +28,6 @@ module.exports = {
         sans: ['Poppins']
       },
       fontSize: {
-        // big screen
         'h1-lg': ['70px', { lineHeight: '130%', letterSpacing: '-0.01em', fontWeight: '600' }],
         'h2-lg': ['60px', { lineHeight: '130%', letterSpacing: '-0.01em', fontWeight: '600' }],
         'h3-lg': ['48px', { lineHeight: '130%', letterSpacing: '-0.01em', fontWeight: '600' }],
@@ -41,7 +40,7 @@ module.exports = {
         'small-text-light-lg': ['16px', { lineHeight: '130%', letterSpacing: '-0.01em', fontWeight: '300' }],
         'tiny-text-lg': ['14px', { lineHeight: '130%', letterSpacing: '-0.01em', fontWeight: '300' }],
         'button-lg': ['16px', { lineHeight: '130%', letterSpacing: '-0.01em', fontWeight: '500' }],
-        // mobile
+
         'h1-sm': ['36px', { lineHeight: '130%', letterSpacing: '-0.01em', fontWeight: '600' }],
         'h2-sm': ['25px', { lineHeight: '130%', letterSpacing: '-0.01em', fontWeight: '500' }],
         'h3-sm': ['18px', { lineHeight: '130%', letterSpacing: '-0.01em', fontWeight: '500' }],

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_06_13_173754) do
+ActiveRecord::Schema[7.1].define(version: 2024_06_18_153810) do
   create_table "products", force: :cascade do |t|
     t.string "name", default: "", null: false
     t.decimal "price", default: "0.0", null: false
@@ -40,6 +40,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_13_173754) do
     t.string "company_name"
     t.string "name"
     t.string "phone"
+    t.string "last_name", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["type"], name: "index_users_on_type"
