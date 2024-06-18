@@ -28,7 +28,7 @@ Rails.application.routes.draw do
 
   # Products
   resources :products, only: [:index, :show]
-  resources :orders, only: [:new, :create]
-
-  get "orders/success" => "orders#success"
+  resources :orders, only: [:new, :create] do
+    get :success
+  end
 end

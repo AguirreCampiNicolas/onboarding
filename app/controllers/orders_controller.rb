@@ -9,7 +9,7 @@ class OrdersController < ApplicationController
     @order.total = @order.quantity * @order.product.price
 
     if @order.save!
-      redirect_to orders_success_path, notice: 'Compra realizada con éxito.'
+      redirect_to order_success_path(@order), notice: 'Compra realizada con éxito.'
     else
       @product = Product.find(order_params[:product_id])
       render :new
