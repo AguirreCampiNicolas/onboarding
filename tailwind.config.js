@@ -3,7 +3,7 @@ module.exports = {
     './pages/**/*.{html,js}',
     './app/helpers/**/*.rb',
     './app/javascript/**/*.js',
-    './app/views/**/*',
+    './app/views/**/*.{erb,html}',
     './node_modules/flowbite/**/*.js'
   ],
   theme: {
