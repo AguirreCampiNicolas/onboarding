@@ -27,7 +27,7 @@ Client.create([
   {
     email: 'client1@gmail.com',
     name: 'client1',
-    last_name:'client1 the third',
+    last_name:'client1thethird',
     phone: '095114540',
     password: 'asdasd',
     password_confirmation: 'asdasd',
@@ -36,7 +36,7 @@ Client.create([
   {
     email: 'client2@gmail.com',
     name: 'client2',
-    last_name:'client2 the third',
+    last_name:'client2thethird',
     phone: '095114541',
     password: 'asdasd',
     password_confirmation: 'asdasd',

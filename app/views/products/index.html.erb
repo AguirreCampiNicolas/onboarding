@@ -1,49 +1,49 @@
-<h1>Productos</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lista de Productos</title>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbo-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbo-track': 'reload', defer: true %>
+</head>
+<body>
+  <div class="container mx-auto p-4">
+    <!-- Parte superior -->
+    <div class="flex flex-col lg:flex-row justify-between items-center mb-4">
+      <div class="mb-4 lg:mb-0">
+        <h2 class="text-2xl font-bold">Lista de Productos</h2>
+        <p class="text-sm text-gray-600">Se encontraron <span id="result-count">X</span> resultados</p>
+        <div class="flex flex-wrap gap-2 mt-2">
+          <button class="filter-btn bg-blue-500 text-white px-3 py-1 rounded" data-filter="sin_tacc">Sin TACC</button>
+          <button class="filter-btn bg-blue-500 text-white px-3 py-1 rounded" data-filter="sin_azucar">Sin Azúcar</button>
+          <button class="filter-btn bg-blue-500 text-white px-3 py-1 rounded" data-filter="para_compartir">Para Compartir</button>
+          <button class="filter-btn bg-blue-500 text-white px-3 py-1 rounded" data-filter="veganos_vegetarianos">Veganos/Vegetarianos</button>
+        </div>
+      </div>
+      <div class="w-full lg:w-auto">
+        <label for="sort-by" class="block text-sm font-medium text-gray-700">Ordenar por</label>
+        <select id="sort-by" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm rounded-md">
+          <option value="mayor_precio">Mayor Precio</option>
+          <option value="menor_precio">Menor Precio</option>
+        </select>
+      </div>
+    </div>
 
-<div class="filters">
-  <%= form_with url: products_path, method: :get, local: true do |form| %>
-    <div>
-      <%= form.label :for_sharing, "Para Compartir" %>
-      <%= form.check_box :for_sharing, { checked: params[:for_sharing] == '1' }, '1', '0' %>
+    <!-- Parte inferior -->
+    <div class="grid grid-cols-2 lg:grid-cols-5 gap-4">
+      <% @products.each do |product| %>
+        <div class="bg-white p-4 rounded-lg shadow">
+          <%= image_tag product.image_url, alt: product.name, class: "w-full h-32 object-cover rounded" %>
+          <h3 class="mt-2 text-lg font-bold"><%= product.name %></h3>
+          <p class="mt-1 text-gray-600">Precio: $<%= product.price %></p>
+          <p class="mt-1 text-gray-600">Calificación: <%= product.rate %></p>
+          <p class="mt-1 text-gray-600"><%= product.description %></p>
+        </div>
+      <% end %>
     </div>
-    <div>
-      <%= form.label :vegan_or_vegetarian, "Vegano/Vegetariano" %>
-      <%= form.check_box :vegan_or_vegetarian, { checked: params[:vegan_or_vegetarian] == '1' }, '1', '0' %>
-    </div>
-    <div>
-      <%= form.label :sugar_free, "Sin Azúcar" %>
-      <%= form.check_box :sugar_free, { checked: params[:sugar_free] == '1' }, '1', '0' %>
-    </div>
-    <div>
-      <%= form.label :no_tacc, "Sin TACC" %>
-      <%= form.check_box :no_tacc, { checked: params[:no_tacc] == '1' }, '1', '0' %>
-    </div>
-    <div>
-      <%= form.label :apetizer, "Aperitivo" %>
-      <%= form.check_box :apetizer, { checked: params[:apetizer] == '1' }, '1', '0' %>
-    </div>
-    <div>
-      <%= form.submit "Filtrar" %>
-    </div>
-  <% end %>
-</div>
+  </div>
 
-<ul>
-  <% @products.each do |product| %>
-    <li>
-      <h2><%= product.name %></h2>
-      <p>Precio: <%= number_to_currency(product.price) %></p>
-      <p>Valoración: <%= product.rate %>/5</p>
-      <p><%= product.description %></p>
-      <p>Vegano o Vegetariano: <%= product.vegan_or_vegetarian ? 'Sí' : 'No' %></p>
-      <p>Sin Azúcar: <%= product.sugar_free ? 'Sí' : 'No' %></p>
-      <p>Sin TACC: <%= product.no_tacc ? 'Sí' : 'No' %></p>
-      <p>Aperitivo: <%= product.apetizer ? 'Sí' : 'No' %></p>
-      <p>Para Compartir: <%= product.for_sharing ? 'Sí' : 'No' %></p>
-      <p>Proveedor: <%= product.user.email %></p>
-      <p>Servicio: <%= product.type %></p>
-    </li>
-  <% end %>
-</ul>
-
-<%= paginate @products %>
+  <%= javascript_pack_tag 'products', 'data-turbo-track': 'reload', defer: true %>
+</body>
+</html>
