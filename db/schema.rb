@@ -40,7 +40,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_18_153810) do
     t.string "company_name"
     t.string "name"
     t.string "phone"
-    t.string "last_name", null: false
+    t.string "last_name"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["type"], name: "index_users_on_type"
