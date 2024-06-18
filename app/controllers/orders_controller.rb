@@ -5,8 +5,6 @@ class OrdersController < ApplicationController
 
   def create
     @order = Order.new(order_params)
-    # puts "CURRENT CLIENT: #{current_client.inspect}"
-    # puts "CURRENT USER: #{current_user.inspect}"
     @order.user_id = current_client.id
     @order.total = @order.quantity * @order.product.price
 
