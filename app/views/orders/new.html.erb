@@ -1,71 +1,39 @@
-<h1>Detalles de la entrega <%= @product.name %></h1>
+<%= form_with(model: @order, local: true) do |f| %>
+  <% if @order.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@order.errors.count, "error") %> prohibited this order from being saved:</h2>
 
-<h2>Destinatario <%= @product.name %></h2>
-
-<div>
-  <%= form_with model: Order.new, url: orders_path, method: :post, local: true do |form| %>
-    <p>Destinatario</p>
-    <%= form.hidden_field :product_id, value: @product.id %>
-    <div>
-      <%= form.label :quantity, "Cantidad" %>
-      <%= form.number_field :quantity, in: 1..10  %>
-    </div>
-    <div>
-      <%= form.label :bussines_name, "Razon social" %>
-      <%= form.text_field :bussines_name %>
-    </div>
-    <div>
-      <%= form.label :rut, "RUT" %>
-      <%= form.text_field :rut %>
-    </div>
-    <div>
-      <%= form.label :receiver_full_name, "Nombre y apellido" %>
-      <%= form.text_field :receiver_full_name %>
-    </div>
-    <div>
-      <%= form.label :receiver_contact_number, "Número de contacto" %>
-      <%= form.text_field :receiver_contact_number %>
-    </div>
-    <div>
-      <%= form.label :ship_date, "Fecha de entrega" %>
-      <%= form.date_select :ship_date %>
-    </div>
-    <div>
-      <%= form.label :ship_time, "Horarios de entrega" %>
-      <%= form.time_select :ship_time %>
-    </div>
-    <div>
-      <%= form.label :ship_address, "Dirección de entrega" %>
-      <%= form.text_field :ship_address %>
-    </div>
-    <div>
-      <%= form.label :ship_cost, "Costo de envío" %>
-      <%= form.text_field :ship_cost %>
-    </div>
-
-    <div>
-      <%= form.label :sourprise_shipping, "Entrega sorpresa" %>
-      <%= form.check_box :sourprise_shipping %>
-    </div>
-
-    <p>Personalización</p>
-    <div>
-      <%= form.label :personalization, "Escriba su mensaje" %>
-      <%= form.text_field :personalization %>
-    </div>
-
-    <p>Si el envío rebota</p>
-    <div>
-      <%= form.label :retry_shipping, "Intentar reenvío a la misma dirección" %>
-      <%= form.check_box :retry_shipping %>
-    </div>
-
-    <div>
-      <%= form.submit "Confirmar" %>
+      <ul>
+        <% @order.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
     </div>
   <% end %>
-</div>
 
+  <div class="field">
+    <%= f.label :product_id %>
+    <%= f.number_field :product_id %>
+  </div>
 
-<p>Precio: <%= number_to_currency(@product.price) %></p>
-<p><%= @product.description %></p>
+  <div class="field">
+    <%= f.label :quantity %>
+    <%= f.number_field :quantity %>
+  </div>
+
+  <h3>Delivery Addresses</h3>
+  <div id="delivery_addresses">
+    <%= f.fields_for :delivery_addresses do |address_form| %>
+      <div class="nested-fields">
+        <%= address_form.label :address %>
+        <%= address_form.text_field :address %>
+        <%= link_to 'Remove', '#', class: 'remove_fields' %>
+      </div>
+    <% end %>
+  </div>
+  <%= link_to_add_fields 'Add Delivery Address', f, :delivery_addresses %>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,11 +1,13 @@
 class OrdersController < ApplicationController
+  # before_action :set_order, only: %i[show edit update destroy]
+
   def new
-    @product = Product.find(params[:product_id])
+    @order = current_client.orders.build
+    @order.delivery_addresses.build
   end
 
   def create
-    @order = Order.new(order_params)
-    @order.user_id = current_client.id
+    @order = current_client.orders.build(order_params)
     @order.total = @order.quantity * @order.product.price
 
     if @order.save!
@@ -28,4 +30,8 @@ class OrdersController < ApplicationController
       :sourprise_shipping, :personalization, :retry_shipping
     )
   end
+
+  # def set_order
+  #   @order = current_client.orders.find(params[:id])
+  # end
 end
