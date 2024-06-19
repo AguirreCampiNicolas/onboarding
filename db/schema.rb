@@ -10,15 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_06_19_130144) do
+ActiveRecord::Schema[7.1].define(version: 2024_06_19_144647) do
   create_table "delivery_addresses", force: :cascade do |t|
     t.integer "order_id", null: false
-    t.string "name_and_last_name"
+    t.string "full_name"
     t.string "contact"
     t.date "date"
     t.time "time"
     t.string "address"
-    t.decimal "shipment_cost"
+    t.decimal "ship_cost"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["order_id"], name: "index_delivery_addresses_on_order_id"
@@ -32,12 +32,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_19_130144) do
     t.decimal "total", null: false
     t.bigint "rut", null: false
     t.string "bussines_name", null: false
-    t.string "receiver_contact_number", null: false
-    t.string "receiver_full_name", null: false
-    t.date "ship_date", null: false
-    t.time "ship_time", null: false
-    t.string "ship_address", null: false
-    t.decimal "ship_cost", null: false
     t.boolean "retry_shipping", default: false
     t.boolean "sourprise_shipping", default: false
     t.datetime "created_at", null: false

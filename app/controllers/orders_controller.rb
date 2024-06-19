@@ -1,13 +1,18 @@
 class OrdersController < ApplicationController
-  # before_action :set_order, only: %i[show edit update destroy]
-
   def new
     @order = current_client.orders.build
     @order.delivery_addresses.build
+    @order.product = Product.find(params[:product_id])
+
+    # HARDCODED ATTRIBUTES ONLY FOR TESTING PORPUSES WHILE ADDRESS FEATURE IS IN DEVELOPMENT
+    @order.quantity = 1
+    @order.rut = 1123123
+    @order.bussines_name = "bussines name"
   end
 
   def create
     @order = current_client.orders.build(order_params)
+    @order.product = Product.find(params[:order][:product_id])
     @order.total = @order.quantity * @order.product.price
 
     if @order.save!
@@ -25,13 +30,8 @@ class OrdersController < ApplicationController
 
   def order_params
     params.require(:order).permit(
-      :rut, :bussines_name, :quantity, :product_id, :receiver_full_name, :receiver_contact_number,
-      :ship_date, :ship_time, :ship_address, :ship_cost,
-      :sourprise_shipping, :personalization, :retry_shipping
+      :rut, :bussines_name, :quantity, :product_id,
+      :sourprise_shipping, :personalization, :retry_shipping, delivery_addresses_attributes: [:full_name, :contact, :date, :time, :address, :ship_cost]
     )
   end
-
-  # def set_order
-  #   @order = current_client.orders.find(params[:id])
-  # end
 end

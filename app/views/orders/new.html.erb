@@ -12,8 +12,9 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :product_id %>
-    <%= f.number_field :product_id %>
+    <%= f.hidden_field :product_id, value: @order.product_id %>
+    <%= f.hidden_field :rut, value: @order.rut %>
+    <%= f.hidden_field :bussines_name, value: @order.bussines_name %>
   </div>
 
   <div class="field">
@@ -23,12 +24,24 @@
 
   <h3>Delivery Addresses</h3>
   <div id="delivery_addresses">
-    <%= f.fields_for :delivery_addresses do |address_form| %>
-      <div class="nested-fields">
-        <%= address_form.label :address %>
-        <%= address_form.text_field :address %>
-        <%= link_to 'Remove', '#', class: 'remove_fields' %>
-      </div>
+    <%= f.fields_for :delivery_addresses do |da_form| %>
+      <%= da_form.label :full_name %>
+      <%= da_form.text_field :full_name %>
+
+      <%= da_form.label :contact %>
+      <%= da_form.text_field :contact %>
+
+      <%= da_form.label :date %>
+      <%= da_form.date_select :date %>
+
+      <%= da_form.label :time %>
+      <%= da_form.time_select :time %>
+
+      <%= da_form.label :address %>
+      <%= da_form.text_field :address %>
+
+      <%= da_form.label :ship_cost %>
+      <%= da_form.number_field :ship_cost %>
     <% end %>
   </div>
   <%= link_to_add_fields 'Add Delivery Address', f, :delivery_addresses %>
