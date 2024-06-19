@@ -80,3 +80,5 @@ gem "letter_opener"
 
 # Pagination gem
 gem "kaminari"
+
+gem "tailwindcss-rails", "~> 2.6"
