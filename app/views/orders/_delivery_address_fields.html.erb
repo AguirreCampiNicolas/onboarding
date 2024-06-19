@@ -1,5 +1,21 @@
-<div class="nested-fields">
+<div id="nested-fields">
+  <%= f.label :full_name %>
+  <%= f.text_field :full_name %>
+
+  <%= f.label :contact %>
+  <%= f.text_field :contact %>
+
+  <%= f.label :date %>
+  <%= f.date_select :date %>
+
+  <%= f.label :time %>
+  <%= f.time_select :time %>
+
   <%= f.label :address %>
   <%= f.text_field :address %>
+
+  <%= f.label :ship_cost %>
+  <%= f.number_field :ship_cost %>
+
   <%= link_to 'Remove', '#', class: 'remove_fields' %>
 </div>
