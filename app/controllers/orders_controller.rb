@@ -3,11 +3,6 @@ class OrdersController < ApplicationController
     @order = current_client.orders.build
     @order.delivery_addresses.build
     @order.product = Product.find(params[:product_id])
-
-    # HARDCODED ATTRIBUTES ONLY FOR TESTING PORPUSES WHILE ADDRESS FEATURE IS IN DEVELOPMENT
-    @order.quantity = 1
-    @order.rut = 1123123
-    @order.bussines_name = "bussines name"
   end
 
   def create

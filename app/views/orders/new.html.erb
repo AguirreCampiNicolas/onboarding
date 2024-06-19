@@ -13,13 +13,21 @@
 
   <div class="field">
     <%= f.hidden_field :product_id, value: @order.product_id %>
-    <%= f.hidden_field :rut, value: @order.rut %>
-    <%= f.hidden_field :bussines_name, value: @order.bussines_name %>
   </div>
 
   <div class="field">
     <%= f.label :quantity %>
     <%= f.number_field :quantity %>
+  </div>
+
+  <div class="field">
+    <%= f.label :rut %>
+    <%= f.number_field :rut %>
+  </div>
+
+  <div class="field">
+    <%= f.label :bussines_name %>
+    <%= f.text_field :bussines_name %>
   </div>
 
   <h3>Delivery Addresses</h3>
