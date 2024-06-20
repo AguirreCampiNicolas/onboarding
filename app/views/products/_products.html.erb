@@ -1,0 +1,14 @@
+<% products.each do |product| %>
+  <div class="product-card border p-4 rounded shadow">
+    <h2 class="text-xl font-bold mb-2"><%= product.name %></h2>
+    <p class="mb-2"><%= product.description %></p>
+    <p class="mb-2">v/v?<%= product.vegan_or_vegetarian %></p>
+    <p class="mb-2">sugar_free?<%= product.sugar_free %></p>
+    <p class="mb-2">no_tacc?<%= product.no_tacc %></p>
+    <p class="mb-2">apetizer?<%= product.apetizer %></p>
+    <p class="mb-2">for_sharing?<%= product.for_sharing %></p>
+    <p class="mb-2">apetizer?<%= product.apetizer %></p>
+    <p class="text-lg font-semibold">Precio: <%= number_to_currency(product.price) %></p>
+    <!-- Agrega más detalles del producto aquí -->
+  </div>
+<% end %>
