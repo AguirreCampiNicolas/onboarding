@@ -19,6 +19,7 @@ module.exports = {
         'planit-grey-2': '#B3B3B3',
         'planit-grey-3': '#EEEEEE',
         'planit-grey-4': '#FBFBFB',
+        'planit-grey-transparent': '#7D7D7D80',
         'planit-white': '#FFFFFF'
       },
       boxShadow: {
@@ -49,8 +50,25 @@ module.exports = {
         'h6-sm': ['12px', { lineHeight: '130%', letterSpacing: '-0.01em', fontWeight: '400' }],
         'button-sm': ['14px', { lineHeight: '130%', letterSpacing: '-0.01em', fontWeight: '600' }]
       },
+      borderRadius: {
+        'tl-md': '5px'
+      },
       padding: {
-        '60': '15rem'
+        '60': '15rem',
+        '11': '2.75rem',
+        '12': '3rem',
+        '13': '3.25rem',
+        '14': '3.5rem',
+        '15': '3.75rem',
+        '16': '4rem',
+        '17': '4.25rem',
+        '18': '4.5rem',
+        '19': '4.75rem',
+        '20': '5rem',
+        '21': '5.25rem',
+        '22': '5.5rem',
+        '23': '5.75rem',
+        '24': '6rem'
       },
       width: {
         '11': '2.75rem',

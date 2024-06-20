@@ -14,7 +14,7 @@ export default class extends Controller {
   toggleFilter(event) {
     console.log("Filter toggled")
     event.currentTarget.classList.toggle("bg-blue-500")
-    event.currentTarget.classList.toggle("bg-gray-300")
+    event.currentTarget.classList.toggle("bg-white")
     this.applyFiltersAndSort()
   }
 

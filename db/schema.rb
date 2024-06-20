@@ -25,7 +25,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_18_162331) do
     t.datetime "updated_at", null: false
     t.integer "user_id", null: false
     t.string "type"
-    t.string "image_url", default: "Logo-primary.png"
+    t.string "image_url", default: "foodbox-example.png"
     t.index ["user_id"], name: "index_products_on_user_id"
   end
 

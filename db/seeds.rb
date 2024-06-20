@@ -13,8 +13,8 @@ Product.destroy_all
 User.destroy_all
 
 # Suppliers
-supplier1 = Supplier.create(email: 'supplier1@gmail.com', password: 'asdasd', password_confirmation: 'asdasd')
-supplier2 = Supplier.create(email: 'supplier2@gmail.com', password: 'asdasd', password_confirmation: 'asdasd')
+supplier1 = Supplier.create(email: 'supplier1@gmail.com', password: 'asdasd', password_confirmation: 'asdasd', name: "supplier 1")
+supplier2 = Supplier.create(email: 'supplier2@gmail.com', password: 'asdasd', password_confirmation: 'asdasd', name: "supplier 2")
 
 # Services
 regalos = 'Regalos'

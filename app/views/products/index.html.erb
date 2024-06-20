@@ -1,24 +1,29 @@
-<div data-controller="products">
+<div data-controller="products" class="bg-planit-grey-4 px-23">
   <div class="flex justify-between items-center mb-4">
     <div>
-      <h1 class="text-2xl font-bold">Productos</h1>
-      <p>Mostrando <%= @products.count %> productos</p>
+      <h1 class="hidden md:block text-2xl font-bold">Productos</h1>
+      <p class="hidden md:block text-text-lg">Mostrando <%= @products.count %> productos</p>
     </div>
-    <div>
-      <select id="sort-by" data-products-target="sortBy" class="form-select mt-1 block w-full">
+  </div>
+
+  <div class="hidden md:flex justify-between items-center mb-4">
+    <div class="flex space-x-2">
+      <button class="filter-btn rounded-tl-md px-5 bg-white border-black border" data-products-target="filterButtons" data-filter="for_sharing">Para Compartir</button>
+      <button class="filter-btn rounded-tl-md px-5 bg-white border-black border" data-products-target="filterButtons" data-filter="vegan_or_vegetarian">Vegano/Vegetariano</button>
+      <button class="filter-btn rounded-tl-md px-5 bg-white border-black border" data-products-target="filterButtons" data-filter="sugar_free">Sin Azúcar</button>
+      <button class="filter-btn rounded-tl-md px-5 bg-white border-black border" data-products-target="filterButtons" data-filter="no_tacc">Sin TACC</button>
+      <button class="filter-btn rounded-tl-md px-5 bg-white border-black border" data-products-target="filterButtons" data-filter="apetizer">Picada</button>
+    </div>
+
+    <div class="flex space-x-2">
+      <select id="sort-by" data-products-target="sortBy" class="form-select mt-1 block r-0 border-0 bg-transparent">
         <option value="price_asc">Precio: Menor a Mayor</option>
         <option value="price_desc">Precio: Mayor a Menor</option>
       </select>
     </div>
   </div>
 
-  <div class="flex space-x-2 mb-4">
-    <button class="filter-btn bg-gray-300 px-4 py-2 rounded" data-products-target="filterButtons" data-filter="no_tacc">Sin TACC</button>
-    <button class="filter-btn bg-gray-300 px-4 py-2 rounded" data-products-target="filterButtons" data-filter="sugar_free">Sin Azúcar</button>
-    <button class="filter-btn bg-gray-300 px-4 py-2 rounded" data-products-target="filterButtons" data-filter="for_sharing">Para Compartir</button>
-    <button class="filter-btn bg-gray-300 px-4 py-2 rounded" data-products-target="filterButtons" data-filter="apetizer">Picada</button>
-    <button class="filter-btn bg-gray-300 px-4 py-2 rounded" data-products-target="filterButtons" data-filter="vegan_or_vegetarian">Vegano/Vegetariano</button>
-  </div>
+  <hr class="hidden md:block mt-4 mb-8 border-planit-dark-blueµ">
 
   <div data-products-target="productsContainer" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
     <%= render partial: "products/products", locals: { products: @products } %>
