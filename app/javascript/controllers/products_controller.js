@@ -34,7 +34,6 @@ export default class extends Controller {
     fetch(`/products?filters=${filters.join(",")}&sort_by=${sortByValue}`)
     .then(response => response.text())
     .then(html => {
-      console.log("Response received")
       this.productsContainerTarget.innerHTML = html
     })
   }

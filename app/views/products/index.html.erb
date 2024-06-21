@@ -1,4 +1,4 @@
-<div data-controller="products" class="bg-planit-grey-4 px-23">
+<div data-controller="products" class="bg-planit-grey-4 px-3 lg:px-23">
   <div class="flex justify-between items-center mb-4">
     <div>
       <h1 class="hidden md:block text-2xl font-bold">Productos</h1>
@@ -25,7 +25,7 @@
 
   <hr class="hidden md:block mt-4 mb-8 border-planit-dark-blueµ">
 
-  <div data-products-target="productsContainer" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+  <div data-products-target="productsContainer" class="grid grid-cols-2 lg:grid-cols-5 gap-8">
     <%= render partial: "products/products", locals: { products: @products } %>
   </div>
 </div>

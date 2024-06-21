@@ -7,7 +7,7 @@ document.addEventListener("turbo:load", () => {
 
   filterButtons.forEach(button => {
     button.addEventListener("click", () => {
-      button.classList.toggle("bg-blue-500")
+      button.classList.toggle("bg-planit-blue-gradient")
       button.classList.toggle("bg-gray-300")
       applyFiltersAndSort()
     })
