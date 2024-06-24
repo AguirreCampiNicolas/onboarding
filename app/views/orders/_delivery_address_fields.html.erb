@@ -1,4 +1,4 @@
-<div id="nested-fields">
+<div class="nested-form-wrapper" data-new-record="<%= f.object.new_record? %>">
   <%= f.label :full_name %>
   <%= f.text_field :full_name %>
 
@@ -17,5 +17,5 @@
   <%= f.label :ship_cost %>
   <%= f.number_field :ship_cost %>
 
-  <%= link_to 'Remove', '#', class: 'remove_fields' %>
+  <button type="button" data-action="nested-form#remove">Remove todo</button>
 </div>
