@@ -1,0 +1,21 @@
+<div class="nested-form-wrapper" data-new-record="<%= f.object.new_record? %>">
+  <%= f.label :full_name %>
+  <%= f.text_field :full_name %>
+
+  <%= f.label :contact %>
+  <%= f.text_field :contact %>
+
+  <%= f.label :date %>
+  <%= f.date_select :date %>
+
+  <%= f.label :time %>
+  <%= f.time_select :time %>
+
+  <%= f.label :address %>
+  <%= f.text_field :address %>
+
+  <%= f.label :ship_cost %>
+  <%= f.number_field :ship_cost %>
+
+  <button type="button" data-action="nested-form#remove">Remove todo</button>
+</div>
