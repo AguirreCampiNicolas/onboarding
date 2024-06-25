@@ -11,10 +11,21 @@
 # Clean DB
 Product.destroy_all
 User.destroy_all
+Admin.destroy_all
 
+puts "Creating Admin:"
+puts "admin@admin.com | asdasd"
+# Admin
+Admin.create!(
+  email: "admin@admin.com",
+  password: 'asdasd',
+  password_confirmation: 'asdasd'
+)
+
+puts "Creating suppliers"
 # Suppliers
-supplier1 = Supplier.create(email: 'supplier1@gmail.com', password: 'asdasd', password_confirmation: 'asdasd')
-supplier2 = Supplier.create(email: 'supplier2@gmail.com', password: 'asdasd', password_confirmation: 'asdasd')
+supplier1 = Supplier.create!(email: 'supplier1@gmail.com', password: 'asdasd', password_confirmation: 'asdasd')
+supplier2 = Supplier.create!(email: 'supplier2@gmail.com', password: 'asdasd', password_confirmation: 'asdasd')
 
 # Services
 regalos = 'Regalos'
@@ -22,8 +33,11 @@ catering = 'Catering'
 merchandising = 'Merchandising'
 eventos = 'Eventos'
 
+puts "Creating Clients:"
+puts "client1@gmail.com | asdasd"
+puts "client2@gmail.com | asdasd"
 # Clients
-Client.create([
+Client.create!([
   {
     email: 'client1@gmail.com',
     name: 'client1',
@@ -42,8 +56,9 @@ Client.create([
   }
 ])
 
+puts "Creating Products..."
 # Products
-Product.create([
+Product.create!([
   {
     name: "Ensalada César",
     price: 8.99,
