@@ -1,20 +1,20 @@
 <% products.each do |product| %>
-  <div class="rounded-lg overflow-hidden bg-white max-w-56" name="product-card">
-    <div class="relative">
-      <%= image_tag product.image_url, alt: 'Logo', class: 'w-full h-auto object-cover' %>
-      <div class="absolute right-0 flex items-center p-4 rounded">
-        <span class="text-h6-sm lg:text-small-text-lg text-gradient"><%= product.rate %></span>
-        <%= image_tag 'icons/Estrella.svg', alt: 'Rate', class: 'w-5 pl-2' %>
+  <div class="rounded-lg overflow-hidden bg-white" name="product-card">
+    <%= link_to product_path(product), target:"_top", class: "card-link w-full md:w-1/2 lg:w-1/5" do %>
+      <div class="relative">
+        <%= image_tag product.image_url, alt: 'Logo', class: 'w-full h-auto object-cover' %>
+        <div class="absolute right-0 flex items-center p-4 rounded">
+          <span class="text-h6-sm lg:text-small-text-lg text-gradient"><%= product.rate %></span>
+          <%= image_tag 'icons/Estrella.svg', alt: 'Rate', class: 'w-5 pl-2' %>
+        </div>
       </div>
-    </div>
-    <div class="p-4">
-      <p class="text-h6-sm lg:text-bold-text-lg w-24 lg:w-40"><%= product.name %>
-      </p>
-      <%= link_to product.name, product_path(product) %>
-      <p class="text-h5-sm lg:text-text-lg text-planit-grey-2"><%= product.user.name %></p>
-      <div class="mt-2 flex justify-between items-center">
-        <span class="text-gradient text-bold-text-lg"><%= number_to_currency(product.price) %></span>
+      <div class="p-4">
+        <p class="text-h6-sm lg:text-bold-text-lg w-24 lg:w-40"><%= product.name %></p>
+        <p class="text-h5-sm lg:text-text-lg text-planit-grey-2"><%= product.user.name %></p>
+        <div class="mt-2 flex justify-between items-center">
+          <span class="text-gradient text-bold-text-lg"><%= number_to_currency(product.price) %></span>
+        </div>
       </div>
-    </div>
+    <% end %>
   </div>
 <% end %>

@@ -7,34 +7,15 @@ class ProductsController < ApplicationController
 
   def index
     @products = Product.all
-    if params[:filters].present?
-      filters = params[:filters].split(",")
-      query = []
-      values = []
 
-      filters.each do |filter|
-        query << "#{filter} = ?"
-        values << true
-      end
+    @products = @products.where(vegan_or_vegetarian: true) if params[:vegan_or_vegetarian].present?
+    @products = @products.where(sugar_free: true) if params[:sugar_free].present?
+    @products = @products.where(no_tacc: true) if params[:no_tacc].present?
+    @products = @products.where(apetizer: true) if params[:apetizer].present?
+    @products = @products.where(for_sharing: true) if params[:for_sharing].present?
 
-      puts "query: #{query.join(" AND ")}, values: #{values} "
-
-      @products = @products.where(query.join(" AND "), *values)
-    end
-
-    if params[:sort_by].present?
-      sort_by = params[:sort_by] == "price_asc" ? "price ASC" : "price DESC"
-      @products = @products.order(sort_by)
-    end
-
-    @products.page(params[:page]).per(10)
-
-    respond_to do |format|
-      if params[:filters].present? or params[:sort_by].present?
-        format.html { render partial: "products/products", locals: { products: @products } }
-      else
-        format.html
-      end
+    if params[:order_by].present?
+      @products = @products.order("price #{params[:order_by]}")
     end
   end
 

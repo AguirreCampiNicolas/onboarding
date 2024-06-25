@@ -13,3 +13,8 @@ body {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+
+input[type=checkbox]:checked+label {
+  color: white;
+  background: #0F58B7;
+}
