@@ -31,7 +31,7 @@
 <ul>
   <% @products.each do |product| %>
     <li>
-      <h2><%= product.name %></h2>
+      <h2><%= link_to product.name, product_path(product) %></h2>
       <p>Precio: <%= number_to_currency(product.price) %></p>
       <p>Valoración: <%= product.rate %>/5</p>
       <p><%= product.description %></p>

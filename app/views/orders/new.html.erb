@@ -1,0 +1,52 @@
+<%= form_with(model: @order, local: true, data: { controller: 'nested-form', nested_form_wrapper_selector_value: '.nested-form-wrapper' }) do |f| %>
+  <% if @order.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@order.errors.count, "error") %> prohibited this order from being saved:</h2>
+
+      <ul>
+        <% @order.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.hidden_field :product_id, value: @order.product_id %>
+  </div>
+
+  <div class="field">
+    <%= f.label :quantity %>
+    <%= f.number_field :quantity %>
+  </div>
+
+  <div class="field">
+    <%= f.label :rut %>
+    <%= f.number_field :rut %>
+  </div>
+
+  <div class="field">
+    <%= f.label :bussines_name %>
+    <%= f.text_field :bussines_name %>
+  </div>
+
+  <h3>Delivery Addresses</h3>
+  <template data-nested-form-target="template">
+    <%= f.fields_for :delivery_addresses, DeliveryAddress.new, child_index: 'NEW_RECORD' do | address_fields | %>
+      <%= render "delivery_address_fields", f: address_fields %>
+    <% end %>
+  </template>
+
+  <%= f.fields_for :delivery_addresses do |address_fields| %>
+    <%= render "delivery_address_fields", f: address_fields %>
+  <% end %>
+
+  <!-- Inserted elements will be injected before that target. -->
+  <div data-nested-form-target="target"></div>
+
+  <button type="button" data-action="nested-form#add">Agregar direccion</button>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
