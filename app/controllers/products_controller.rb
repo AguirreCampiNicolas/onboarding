@@ -4,6 +4,7 @@ class ProductsController < ApplicationController
   def index
     @products = Product.all
 
+    @products = @products.where(type: params[:type]) if params[:type].present?
     @products = @products.where(vegan_or_vegetarian: true) if params[:vegan_or_vegetarian].present?
     @products = @products.where(sugar_free: true) if params[:sugar_free].present?
     @products = @products.where(no_tacc: true) if params[:no_tacc].present?

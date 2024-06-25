@@ -9,6 +9,7 @@
   <%= form_with(url: products_path, method: :get,
       data: {controller: "products"}, class:"hidden md:flex justify-between items-center mb-4") do %>
     <div class="flex flex-wrap gap-4 space-x-2">
+      <%= hidden_field_tag :type, params[:type] %>
       <div>
         <%= check_box_tag :for_sharing, '1', params[:for_sharing].present?, class: 'hidden ', data: {action: "change->products#submit"} %>
         <%= label_tag :for_sharing, 'Para compartir', class: "filter-btn rounded-tl-md px-5 bg-white border-black border" %>
