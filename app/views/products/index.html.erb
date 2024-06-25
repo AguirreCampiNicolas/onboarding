@@ -6,26 +6,39 @@
     </div>
   </div>
 
-  <div class="hidden md:flex justify-between items-center mb-4">
-    <div class="flex space-x-2">
-      <button class="filter-btn rounded-tl-md px-5 bg-white border-black border" data-products-target="filterButtons" data-filter="for_sharing">Para Compartir</button>
-      <button class="filter-btn rounded-tl-md px-5 bg-white border-black border" data-products-target="filterButtons" data-filter="vegan_or_vegetarian">Vegano/Vegetariano</button>
-      <button class="filter-btn rounded-tl-md px-5 bg-white border-black border" data-products-target="filterButtons" data-filter="sugar_free">Sin Azúcar</button>
-      <button class="filter-btn rounded-tl-md px-5 bg-white border-black border" data-products-target="filterButtons" data-filter="no_tacc">Sin TACC</button>
-      <button class="filter-btn rounded-tl-md px-5 bg-white border-black border" data-products-target="filterButtons" data-filter="apetizer">Picada</button>
+  <%= form_with(url: products_path, method: :get,
+      data: {controller: "products"}, class:"hidden md:flex justify-between items-center mb-4") do %>
+    <div class="flex flex-wrap gap-4 space-x-2">
+      <div>
+        <%= check_box_tag :for_sharing, '1', params[:for_sharing].present?, class: 'hidden ', data: {action: "change->products#submit"} %>
+        <%= label_tag :for_sharing, 'Para compartir', class: "filter-btn rounded-tl-md px-5 bg-white border-black border" %>
+      </div>
+      <div class="pr-40">
+        <%= check_box_tag :vegan_or_vegetarian, '1', params[:vegan_or_vegetarian].present?, class: 'hidden ', data: {action: "change->products#submit"} %>
+        <%= label_tag :vegan_or_vegetarian, 'Vegano/Vegetariano', class: "filter-btn rounded-tl-md px-5 bg-white border-black border" %>
+      </div>
+      <div>
+        <%= check_box_tag :sugar_free, '1', params[:sugar_free].present?, class: 'hidden ', data: {action: "change->products#submit"} %>
+        <%= label_tag :sugar_free, 'Sin Azúcar', class: "filter-btn rounded-tl-md px-5 bg-white border-black border" %>
+      </div>
+      <div>
+        <%= check_box_tag :no_tacc, '1', params[:no_tacc].present?, class: 'hidden ', data: {action: "change->products#submit"} %>
+        <%= label_tag :no_tacc, 'Sin TACC', class: "filter-btn rounded-tl-md px-5 bg-white border-black border" %>
+      </div>
+      <div>
+        <%= check_box_tag :apetizer, '1', params[:apetizer].present?, class: 'hidden ', data: {action: "change->products#submit"} %>
+        <%= label_tag :apetizer, 'Picada', class: "filter-btn rounded-tl-md px-5 bg-white border-black border" %>
+      </div>
     </div>
-
-    <div class="flex space-x-2">
-      <select id="sort-by" data-products-target="sortBy" class="form-select mt-1 block r-0 border-0 bg-transparent">
-        <option value="price_asc">Precio: Menor a Mayor</option>
-        <option value="price_desc">Precio: Mayor a Menor</option>
-      </select>
+    <div class="flex flex-col justify-end">
+      <%= select_tag :order_by, options_for_select([["Precio: Menor a Mayor", "ASC"],["Precio: Mayor a Menor", "DESC"]], selected: params[:order_by]), include_blank: true, class: 'form-select mt-1 block border-0 bg-transparent',
+        data: {action: "change->products#submit"} %>
     </div>
-  </div>
+  <% end %>
 
   <hr class="hidden md:block mt-4 mb-8 border-planit-dark-blueµ">
 
-  <div data-products-target="productsContainer" class="grid grid-cols-2 lg:grid-cols-5 gap-8">
+  <%= turbo_frame_tag "products", class: "grid grid-cols-2 lg:grid-cols-5 gap-8" do %>
     <%= render partial: "products/products", locals: { products: @products } %>
-  </div>
+  <% end %>
 </div>
