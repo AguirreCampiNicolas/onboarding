@@ -9,7 +9,7 @@ body {
 }
 
 .text-gradient {
-  background: linear-gradient(to right, #4f46e5, #3b82f6); /* Define tu gradiente aquí */
+  background: linear-gradient(to right, #0F58B7, #62D9FF); /* Define tu gradiente aquí */
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }

@@ -1,14 +1,56 @@
-<h1><%= @product.name %></h1>
-<p>Precio: <%= number_to_currency(@product.price) %></p>
-<p>Valoración: <%= @product.rate %>/5</p>
-<p><%= @product.description %></p>
-<p>Vegano o Vegetariano: <%= @product.vegan_or_vegetarian ? 'Sí' : 'No' %></p>
-<p>Sin Azúcar: <%= @product.sugar_free ? 'Sí' : 'No' %></p>
-<p>Sin TACC: <%= @product.no_tacc ? 'Sí' : 'No' %></p>
-<p>Aperitivo: <%= @product.apetizer ? 'Sí' : 'No' %></p>
-<p>Para Compartir: <%= @product.for_sharing ? 'Sí' : 'No' %></p>
-<p>Proveedor: <%= @product.user.email %></p>
+<div class="flex flex-col lg:flex-row gap-4 px-23">
+  <!-- Parte Izquierda -->
+  <div class="lg:w-2/3">
+    <%= image_tag @product.image_url, alt: 'Imagen', class: 'w-full h-96 object-cover mb-4' %>
+    <div class="hidden lg:block" name="lg-description-container">
+      <p class="text-h5-lg">Descripción</p>
+      <p class="text-lg"><%= @product.description %></p>
+    </div>
+  </div>
 
-<%= button_to "Comprar", new_order_path, method: :get, params: {product_id: @product.id}, class: "btn btn-primary" %>
-<%= button_to "Cancelar", products_path, method: :get, class: "btn btn-primary" %>
+  <!-- Parte Derecha -->
+  <div class="lg:w-1/3 bg-white">
+    <p class="text-h2-sm lg:text-h5-lg mb-2"><%= @product.user.name %></p>
+    <p class="text-h1-sm lg:text-h4-lg text-gradient mb-2"><%= @product.name %></p>
 
+    <div class="flex items-center mb-4">
+      <%= image_tag 'icons/Estrella.svg', alt: 'Rate', class: 'w-5 pl-2' %>
+      <span class="ml-2 text-h4-sm lg:text-small-text-lg text-gradient"><%= @product.rate %></span>
+      <button class="ml-4 text-h5-sm lg:text-tiny-text-lg text-planit-dark-blue">Ver calificaciones</button>
+    </div>
+
+    <div class="flex items-center mb-4">
+      <button class="px-2 border">-</button>
+      <span class="px-5 border">1</span>
+      <button class="px-2 border">+</button>
+    </div>
+
+    <div class="mb-4 hidden lg:block">
+      <h4 class="text-h6-lg mb-2">Personalizar pedido</h4>
+      <div class="flex items-center justify-between mb-2">
+        <div class="flex items-center">
+          <input type="checkbox" class="mr-2">
+          <span>Personalización 1</span>
+        </div>
+        <span class="text-gray-500">+$10</span>
+      </div>
+      <div class="flex items-center justify-between mb-2">
+        <div class="flex items-center">
+          <input type="checkbox" class="mr-2">
+          <span>Personalización 2</span>
+        </div>
+        <span class="text-gray-500">+$20</span>
+      </div>
+    </div>
+
+    <p class="hidden lg:block text-small-text-light-lg mb-4">¿Necesitas más personalización? <a href="#" class="text-blue-500 underline">Hablar con un ejecutivo</a></p>
+
+    <div class="flex justify-between items-center mb-4">
+      <span class="text-lg font-bold">TOTAL</span>
+      <span class="text-lg font-bold text-gradient"> $100 + IVA</span>
+    </div>
+
+    <button class="w-full py-2 bg-blue-500 text-white rounded-lg mb-2">Comprar</button>
+    <a href="#" class="block text-center text-blue-500 underline">Imprimir presupuesto</a>
+  </div>
+</div>
