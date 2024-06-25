@@ -13,13 +13,6 @@ Product.destroy_all
 User.destroy_all
 Admin.destroy_all
 
-'''
-TODO:
-* crear admins
-* crear logs para todos los seeds
-* verificar que los addresses se esten agregando
-* quitar los unperimted params
-'''
 puts "Creating Admin:"
 puts "admin@admin.com | asdasd"
 # Admin
@@ -47,12 +40,16 @@ puts "client2@gmail.com | asdasd"
 Client.create!([
   {
     email: 'client1@gmail.com',
+    name: 'client1',
+    phone: '095114540',
     password: 'asdasd',
     password_confirmation: 'asdasd',
     company_name: 'c1 company'
   },
   {
     email: 'client2@gmail.com',
+    name: 'client2',
+    phone: '095114541',
     password: 'asdasd',
     password_confirmation: 'asdasd',
     company_name: 'c2 company'

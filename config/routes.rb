@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'clients/show'
   root to: "products#index"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
@@ -26,8 +27,8 @@ Rails.application.routes.draw do
 
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
 
-  # Products
   resources :products, only: [:index, :show]
+  resources :clients, only: [:show, :update, :destroy]
   resources :orders, only: [:new, :create] do
     get :success
   end

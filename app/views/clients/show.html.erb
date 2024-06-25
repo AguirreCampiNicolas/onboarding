@@ -1,0 +1,28 @@
+<!-- app/views/clients/show.html.erb -->
+<h1>Editar Información del Cliente</h1>
+
+<%= form_with model: @client, url: client_path, method: :patch, local: true do |form| %>
+  <div class="max-w-2xl mx-auto bg-white shadow-md rounded-lg p-6">
+    <div class="mb-4">
+      <%= form.label :name, "Nombre", class: "block text-gray-700 font-bold mb-2" %>
+      <%= form.text_field :name, class: "text-gray-900 border rounded-md p-2 w-full" %>
+    </div>
+
+    <div class="mb-4">
+      <%= form.label :email, "Email", class: "block text-gray-700 font-bold mb-2" %>
+      <%= form.email_field :email, class: "text-gray-900 border rounded-md p-2 w-full" %>
+    </div>
+
+    <div class="mb-4">
+      <%= form.label :phone, "Teléfono", class: "block text-gray-700 font-bold mb-2" %>
+      <%= form.text_field :phone, class: "text-gray-900 border rounded-md p-2 w-full" %>
+    </div>
+
+    <div class="flex items-center justify-between">
+      <%= form.submit "Editar informacion", class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" %>
+      <%= link_to 'Cerrar Cuenta', client_path, method: :delete, data: { confirm: '¿Estás seguro de que quieres cerrar tu cuenta?' }, class: 'bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded' %>
+    </div>
+  </div>
+<% end %>
+
+<%= link_to 'Volver', root_path, class: 'text-blue-500 hover:text-blue-700' %>
