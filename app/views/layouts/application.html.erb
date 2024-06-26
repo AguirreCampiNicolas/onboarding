@@ -44,7 +44,7 @@
               <%= form_with(url: products_path, method: :get, local: true, class: "w-full") do %>
                 <div class="flex justify-center items-center">
                   <%= text_field_tag :search, params[:search], placeholder: "Food Box | $1000 - $2000", class: "text-tiny-text-lg bg-planit-grey-4 border rounded-full w-full relative" %>
-                  <button type="submit" class="absolute right-0 mr-2">
+                  <button type="submit" class="absolute right-0 mr-1">
                     <%= image_tag "icons/Lupa.svg", class: "w-8 h-auto" %>
                   </button>
                 </div>
@@ -84,6 +84,17 @@
               </svg>
             </button>
           </div>
+        </div>
+        <!-- Search Bar for small screens -->
+        <div class="md:hidden p-4">
+          <%= form_with(url: products_path, method: :get, local: true, class: "w-full") do %>
+            <div class="flex justify-center items-center">
+              <%= text_field_tag :search, params[:search], placeholder: "Food Box | $1000 - $2000", class: "text-tiny-text-lg bg-planit-grey-4 border rounded-full w-full relative" %>
+              <button type="submit" class="absolute right-0 mr-5">
+                <%= image_tag "icons/Filtros.svg", class: "w-8 h-auto" %>
+              </button>
+            </div>
+          <% end %>
         </div>
       </nav>
     <% end %>
