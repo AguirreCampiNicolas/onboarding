@@ -11,6 +11,9 @@ module.exports = {
       backgroundImage: {
         'planit-blue-gradient': 'linear-gradient(46.99deg, #0F58B7 -4.4%, #62D9FF 120.42%)'
       },
+      borderColor: {
+        'planit-light-blue': '#9BC7FF',
+      },
       colors: {
         'planit-dark-blue': '#0F58B7',
         'planit-light-blue': '#9BC7FF',

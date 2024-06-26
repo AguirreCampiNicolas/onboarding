@@ -4,7 +4,7 @@
                   when :alert then "bg-red-100 border-red-500 text-red-700"
                   else "bg-gray-100 border-gray-500 text-gray-700"
                   end %>
-  <div class="p-4 border-l-4 mb-4 <%= flash_class %>" role="alert">
+  <div class="p-4 border-l-4 <%= flash_class %>" role="alert">
     <p class="font-bold"><%= key.capitalize %></p>
     <p><%= message %></p>
   </div>
