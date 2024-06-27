@@ -7,7 +7,7 @@ class OrdersController < ApplicationController
 
   def create
     @order = current_client.orders.build(order_params)
-    @order.product = Product.find(params[:order][:product_id])
+    @order.product = Product.find(order_params[:product_id])
     @order.total = @order.quantity * @order.product.price
 
     if @order.save!

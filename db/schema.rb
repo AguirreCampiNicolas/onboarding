@@ -10,7 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_06_19_144647) do
+ActiveRecord::Schema[7.1].define(version: 2024_06_26_174843) do
+  create_table "categories", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "delivery_addresses", force: :cascade do |t|
     t.integer "order_id", null: false
     t.string "full_name"
@@ -55,6 +61,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_19_144647) do
     t.integer "user_id", null: false
     t.string "type"
     t.string "image_url", default: "foodbox-example.png"
+    t.integer "category_id", null: false
+    t.index ["category_id"], name: "index_products_on_category_id"
     t.index ["user_id"], name: "index_products_on_user_id"
   end
 
@@ -79,5 +87,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_19_144647) do
   add_foreign_key "delivery_addresses", "orders"
   add_foreign_key "orders", "products"
   add_foreign_key "orders", "users"
+  add_foreign_key "products", "categories"
   add_foreign_key "products", "users"
 end

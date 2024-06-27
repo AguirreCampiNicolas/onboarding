@@ -28,9 +28,7 @@ Rails.application.routes.draw do
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
 
   resources :products, only: [:index, :show]
-
   resources :clients, only: [:show, :update, :destroy]
-
   resources :orders, only: [:new, :create] do
     get :success
   end
