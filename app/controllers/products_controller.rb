@@ -1,6 +1,10 @@
 class ProductsController < ApplicationController
   before_action :authenticate_client!
 
+  def show
+    @product = Product.find(params[:id])
+  end
+
   def index
     @products = Product.all
 

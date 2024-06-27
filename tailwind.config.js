@@ -44,7 +44,6 @@ module.exports = {
         'small-text-light-lg': ['16px', { lineHeight: '130%', letterSpacing: '-0.01em', fontWeight: '300' }],
         'tiny-text-lg': ['14px', { lineHeight: '130%', letterSpacing: '-0.01em', fontWeight: '300' }],
         'button-lg': ['16px', { lineHeight: '130%', letterSpacing: '-0.01em', fontWeight: '500' }],
-
         'h1-sm': ['36px', { lineHeight: '130%', letterSpacing: '-0.01em', fontWeight: '600' }],
         'h2-sm': ['25px', { lineHeight: '130%', letterSpacing: '-0.01em', fontWeight: '500' }],
         'h3-sm': ['18px', { lineHeight: '130%', letterSpacing: '-0.01em', fontWeight: '500' }],

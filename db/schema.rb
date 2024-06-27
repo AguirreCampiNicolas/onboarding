@@ -17,6 +17,35 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_26_174843) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "delivery_addresses", force: :cascade do |t|
+    t.integer "order_id", null: false
+    t.string "full_name"
+    t.string "contact"
+    t.date "date"
+    t.time "time"
+    t.string "address"
+    t.decimal "ship_cost"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["order_id"], name: "index_delivery_addresses_on_order_id"
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.integer "quantity", default: 1, null: false
+    t.integer "product_id", null: false
+    t.integer "user_id", null: false
+    t.string "personalization"
+    t.decimal "total", null: false
+    t.bigint "rut", null: false
+    t.string "bussines_name", null: false
+    t.boolean "retry_shipping", default: false
+    t.boolean "sourprise_shipping", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["product_id"], name: "index_orders_on_product_id"
+    t.index ["user_id"], name: "index_orders_on_user_id"
+  end
+
   create_table "products", force: :cascade do |t|
     t.string "name", default: "", null: false
     t.decimal "price", default: "0.0", null: false
@@ -55,6 +84,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_26_174843) do
     t.index ["type"], name: "index_users_on_type"
   end
 
+  add_foreign_key "delivery_addresses", "orders"
+  add_foreign_key "orders", "products"
+  add_foreign_key "orders", "users"
   add_foreign_key "products", "categories"
   add_foreign_key "products", "users"
 end
