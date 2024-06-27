@@ -1,49 +1,44 @@
-<h1>Productos</h1>
+<div data-controller="products" class="bg-planit-grey-4 px-3 lg:px-23">
+  <div class="flex justify-between items-center mb-4">
+    <div>
+      <h1 class="hidden md:block text-2xl font-bold">Productos</h1>
+    </div>
+  </div>
 
-<div class="filters">
-  <%= form_with url: products_path, method: :get, local: true do |form| %>
-    <div>
-      <%= form.label :for_sharing, "Para Compartir" %>
-      <%= form.check_box :for_sharing, { checked: params[:for_sharing] == '1' }, '1', '0' %>
+  <%= form_with(url: products_path, method: :get,
+      data: {controller: "products"}, class:"hidden md:flex justify-between items-center mb-4") do %>
+    <div class="flex flex-wrap gap-4 space-x-2">
+      <%= hidden_field_tag :type, params[:type] %>
+      <div>
+        <%= check_box_tag :for_sharing, '1', params[:for_sharing].present?, class: 'hidden ', data: {action: "change->products#submit"} %>
+        <%= label_tag :for_sharing, 'Para compartir', class: "filter-btn rounded-tl-md px-5 bg-white border-black border" %>
+      </div>
+      <div class="pr-40">
+        <%= check_box_tag :vegan_or_vegetarian, '1', params[:vegan_or_vegetarian].present?, class: 'hidden ', data: {action: "change->products#submit"} %>
+        <%= label_tag :vegan_or_vegetarian, 'Vegano/Vegetariano', class: "filter-btn rounded-tl-md px-5 bg-white border-black border" %>
+      </div>
+      <div>
+        <%= check_box_tag :sugar_free, '1', params[:sugar_free].present?, class: 'hidden ', data: {action: "change->products#submit"} %>
+        <%= label_tag :sugar_free, 'Sin Azúcar', class: "filter-btn rounded-tl-md px-5 bg-white border-black border" %>
+      </div>
+      <div>
+        <%= check_box_tag :no_tacc, '1', params[:no_tacc].present?, class: 'hidden ', data: {action: "change->products#submit"} %>
+        <%= label_tag :no_tacc, 'Sin TACC', class: "filter-btn rounded-tl-md px-5 bg-white border-black border" %>
+      </div>
+      <div>
+        <%= check_box_tag :apetizer, '1', params[:apetizer].present?, class: 'hidden ', data: {action: "change->products#submit"} %>
+        <%= label_tag :apetizer, 'Picada', class: "filter-btn rounded-tl-md px-5 bg-white border-black border" %>
+      </div>
     </div>
-    <div>
-      <%= form.label :vegan_or_vegetarian, "Vegano/Vegetariano" %>
-      <%= form.check_box :vegan_or_vegetarian, { checked: params[:vegan_or_vegetarian] == '1' }, '1', '0' %>
+    <div class="flex flex-col justify-end">
+      <%= select_tag :order_by, options_for_select([["Precio: Menor a Mayor", "ASC"],["Precio: Mayor a Menor", "DESC"]], selected: params[:order_by]), include_blank: true, class: 'form-select mt-1 block border-0 bg-transparent',
+        data: {action: "change->products#submit"} %>
     </div>
-    <div>
-      <%= form.label :sugar_free, "Sin Azúcar" %>
-      <%= form.check_box :sugar_free, { checked: params[:sugar_free] == '1' }, '1', '0' %>
-    </div>
-    <div>
-      <%= form.label :no_tacc, "Sin TACC" %>
-      <%= form.check_box :no_tacc, { checked: params[:no_tacc] == '1' }, '1', '0' %>
-    </div>
-    <div>
-      <%= form.label :apetizer, "Aperitivo" %>
-      <%= form.check_box :apetizer, { checked: params[:apetizer] == '1' }, '1', '0' %>
-    </div>
-    <div>
-      <%= form.submit "Filtrar" %>
-    </div>
+  <% end %>
+
+  <hr class="hidden md:block mt-4 mb-8 border-planit-dark-blueµ">
+
+  <%= turbo_frame_tag "products", class: "grid grid-cols-2 lg:grid-cols-5 gap-8" do %>
+    <%= render partial: "products/products", locals: { products: @products } %>
   <% end %>
 </div>
-
-<ul>
-  <% @products.each do |product| %>
-    <li>
-      <h2><%= link_to product.name, product_path(product) %></h2>
-      <p>Precio: <%= number_to_currency(product.price) %></p>
-      <p>Valoración: <%= product.rate %>/5</p>
-      <p><%= product.description %></p>
-      <p>Vegano o Vegetariano: <%= product.vegan_or_vegetarian ? 'Sí' : 'No' %></p>
-      <p>Sin Azúcar: <%= product.sugar_free ? 'Sí' : 'No' %></p>
-      <p>Sin TACC: <%= product.no_tacc ? 'Sí' : 'No' %></p>
-      <p>Aperitivo: <%= product.apetizer ? 'Sí' : 'No' %></p>
-      <p>Para Compartir: <%= product.for_sharing ? 'Sí' : 'No' %></p>
-      <p>Proveedor: <%= product.user.email %></p>
-      <p>Servicio: <%= product.type %></p>
-    </li>
-  <% end %>
-</ul>
-
-<%= paginate @products %>

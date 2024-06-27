@@ -1,34 +1,32 @@
-<h2>Sign up</h2>
-
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "clients/shared/error_messages", resource: resource %>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+<%= render 'shared/mobile_navbar_login_signup' %>
+<div class="flex min-h-screen">
+  <!-- Left side -->
+  <%= render 'clients/shared/left_panel_new_session_and_registration' %>
+  <!-- Right side -->
+  <div class="w-full md:w-1/2 bg-white flex flex-col justify-center p-10">
+    <%= form_with(model: resource, as: resource_name, url: registration_path(resource_name), local: true, class: "flex flex-col justify-center w-full mt-20 2xl:px-60") do |f| %>
+      <%= render "clients/shared/error_messages", resource: resource %>
+      <p class="text-h1-sm md:text-h4-lg">¡Bienvenido a Plan IT!</p>
+      <p class="text-text mt-10">Por favor, complete su información personal para crear un usuario propio.</p>
+      <span class="text-planit-grey-2 text-h5-sm md:text-small-text">¿Ya tenés una cuenta? <%= link_to "Inicia sesión aquí.", new_session_path(resource_name), class: "text-planit-dark-blue" %></span>
+      <div class="mb-4 w-full">
+        <%= f.text_field :name, autofocus: true, autocomplete: "name", placeholder: "Nombre", class: "w-full bg-transparent border-0 border-b-2 focus:outline-none focus:ring-0 focus:border-black border-gray-200" %>
+      </div>
+      <div class="mb-4 w-full">
+        <%= f.text_field :last_name, autofocus: true, autocomplete: "last name", placeholder: "Apellido", class: "w-full bg-transparent border-0 border-b-2 focus:outline-none focus:ring-0 focus:border-black border-gray-200" %>
+      </div>
+      <div class="mb-4 w-full">
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "Email", class: "w-full bg-transparent border-0 border-b-2 focus:outline-none focus:ring-0 focus:border-black border-gray-200" %>
+      </div>
+      <div class="mb-4 w-full">
+        <%= f.password_field :password, autocomplete: "current-password", placeholder: "Contraseña", class: "w-full bg-transparent border-0 border-b-2 focus:outline-none focus:ring-0 focus:border-black border-gray-200" %>
+      </div>
+      <div class="mb-4 w-full">
+        <%= f.text_field :company_name, autofocus: true, autocomplete: "company name", placeholder: "Nombre de su empresa", class: "w-full bg-transparent border-0 border-b-2 focus:outline-none focus:ring-0 focus:border-black border-gray-200" %>
+      </div>
+      <div class="mb-4 w-full mt-10 mx-auto">
+        <%= f.submit "REGISTRARSE", class: "w-full bg-planit-blue-gradient text-white p-2 rounded cursor-pointer hover:bg-blue-700 shadow-planit" %>
+      </div>
+    <% end %>
   </div>
-
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :company_name %><br />
-    <%= f.text_field :company_name %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
-
-<%= render "clients/shared/links" %>
+</div>

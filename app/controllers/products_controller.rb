@@ -8,12 +8,27 @@ class ProductsController < ApplicationController
   def index
     @products = Product.all
 
-    filter_params.each do |key, value|
-      @products = @products.where(key => true) if value == '1'
+    @products = @products.where(type: params[:type]) if params[:type].present?
+    @products = @products.where(vegan_or_vegetarian: true) if params[:vegan_or_vegetarian].present?
+    @products = @products.where(sugar_free: true) if params[:sugar_free].present?
+    @products = @products.where(no_tacc: true) if params[:no_tacc].present?
+    @products = @products.where(apetizer: true) if params[:apetizer].present?
+    @products = @products.where(for_sharing: true) if params[:for_sharing].present?
+
+    if params[:search].present?
+      search_term = params[:search].downcase
+
+      if params[:search_filter] == "category"
+        @products = @products.joins(:category)
+                             .where('LOWER(categories.name) LIKE ?', "%#{search_term}%")
+      else
+        @products = @products.where("#{params[:search_filter]} LIKE ?", "%#{search_term}%")
+      end
     end
 
-    @products = @products.page(params[:page]).per(10)
-    render :index
+    if params[:order_by].present?
+      @products = @products.order("price #{params[:order_by]}")
+    end
   end
 
   private
@@ -22,9 +37,5 @@ class ProductsController < ApplicationController
     unless client_signed_in?
       redirect_to new_client_session_path, alert: "You need to sign in as a client to access this page."
     end
-  end
-
-  def filter_params
-    params.permit(:for_sharing, :vegan_or_vegetarian, :sugar_free, :no_tacc, :apetizer, :commit)
   end
 end
