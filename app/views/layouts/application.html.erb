@@ -40,19 +40,31 @@
               </li>
             </ul>
             <!-- Search Bar -->
-            <div class="w-full mt-2 relative">
-              <%= form_with(url: products_path, method: :get, local: true, class: "w-full") do %>
-                <div class="flex justify-center items-center">
-                  <%= text_field_tag :search, params[:search], placeholder: "Food Box | $1000 - $2000", class: "text-tiny-text-lg bg-planit-grey-4 border rounded-full w-full relative" %>
+            <div class="w-full mt-2 relative" data-controller="dropdown">
+              <%= form_with(url: products_path, method: :get, local: true, class: "w-full") do |f| %>
+                <div class="flex justify-center items-center relative">
+                  <%= text_field_tag :search, params[:search], placeholder: "Food Box | $1000 - $2000", class: "text-tiny-text-lg bg-planit-grey-4 border rounded-full w-full relative", data: { action: "focus->dropdown#toggle", target: "dropdown.input" } %>
+                  <%= hidden_field_tag :type, params[:type] unless !params[:type].present? %>
                   <button type="submit" class="absolute right-0 mr-1">
                     <%= image_tag "icons/Lupa.svg", class: "w-8 h-auto" %>
                   </button>
+                </div>
+                <!-- Dropdown Filters -->
+                <div class="absolute top-full mt-2 w-full bg-white shadow-lg rounded-lg hidden" data-target="dropdown.menu">
+                  <div class="p-2">
+                    <label class="block">
+                      <input type="radio" name="search_filter" value="name" class="mr-2" <%= "checked" if params[:search_filter] == "name" || params[:search_filter].blank? %>> Nombre
+                    </label>
+                    <label class="block">
+                      <input type="radio" name="search_filter" value="category" class="mr-2" <%= "checked" if params[:search_filter] == "category" %>> Categoría
+                    </label>
+                  </div>
                 </div>
               <% end %>
             </div>
           </div>
 
-            <!-- Dropdown menu -->
+          <!-- Dropdown menu -->
           <div class="flex items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
             <div class="flex items-center space-x-3">
               <%= image_tag "Logo-primary", class: "w-8" %>
@@ -86,13 +98,26 @@
           </div>
         </div>
         <!-- Search Bar for small screens -->
-        <div class="md:hidden p-4">
-          <%= form_with(url: products_path, method: :get, local: true, class: "w-full") do %>
-            <div class="flex justify-center items-center">
-              <%= text_field_tag :search, params[:search], placeholder: "Food Box | $1000 - $2000", class: "text-tiny-text-lg bg-planit-grey-4 border rounded-full w-full relative" %>
-              <button type="submit" class="absolute right-0 mr-5">
-                <%= image_tag "icons/Filtros.svg", class: "w-8 h-auto" %>
+        <div class="md:hidden p-4" data-controller="dropdown">
+          <%= form_with(url: products_path, method: :get, local: true, class: "w-full") do |f| %>
+            <div class="flex justify-center items-center relative">
+              <%= text_field_tag :search, params[:search], placeholder: "Food Box | $1000 - $2000", class: "pl-12 text-tiny-text-lg bg-planit-grey-4 border rounded-full w-full relative", data: { action: "focus->dropdown#toggle", target: "dropdown.input" } %>
+              <%= hidden_field_tag :type, params[:type] unless !params[:type].present? %>
+              <%= image_tag "icons/Filtros.svg", class: "absolute right-0 mr-1 w-8 h-auto", data: { action: "click->dropdown#toggle", target: "dropdown.input" } %>
+              <button type="submit" class="absolute left-0 ml-1">
+                <%= image_tag "icons/Lupa.svg", class: "w-8 h-auto" %>
               </button>
+            </div>
+            <!-- Dropdown Filters -->
+            <div class="mt-2 w-full bg-white shadow-lg rounded-lg hidden z-50" data-target="dropdown.menu">
+              <div class="p-2">
+                <label class="block">
+                  <input type="radio" name="search_filter" value="name" class="mr-2" <%= "checked" if params[:search_filter] == "name" || params[:search_filter].blank? %>> Nombre
+                </label>
+                <label class="block">
+                  <input type="radio" name="search_filter" value="category" class="mr-2" <%= "checked" if params[:search_filter] == "category" %>> Categoría
+                </label>
+              </div>
             </div>
           <% end %>
         </div>
