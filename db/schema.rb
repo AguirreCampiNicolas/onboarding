@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_06_26_174843) do
+ActiveRecord::Schema[7.1].define(version: 2024_06_27_172403) do
   create_table "categories", force: :cascade do |t|
     t.string "name", null: false
     t.datetime "created_at", null: false
@@ -30,6 +30,15 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_26_174843) do
     t.index ["order_id"], name: "index_delivery_addresses_on_order_id"
   end
 
+  create_table "order_personalizations", force: :cascade do |t|
+    t.integer "order_id", null: false
+    t.integer "personalization_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["order_id"], name: "index_order_personalizations_on_order_id"
+    t.index ["personalization_id"], name: "index_order_personalizations_on_personalization_id"
+  end
+
   create_table "orders", force: :cascade do |t|
     t.integer "quantity", default: 1, null: false
     t.integer "product_id", null: false
@@ -44,6 +53,15 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_26_174843) do
     t.datetime "updated_at", null: false
     t.index ["product_id"], name: "index_orders_on_product_id"
     t.index ["user_id"], name: "index_orders_on_user_id"
+  end
+
+  create_table "personalizations", force: :cascade do |t|
+    t.string "name"
+    t.decimal "price"
+    t.integer "product_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["product_id"], name: "index_personalizations_on_product_id"
   end
 
   create_table "products", force: :cascade do |t|
@@ -85,8 +103,11 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_26_174843) do
   end
 
   add_foreign_key "delivery_addresses", "orders"
+  add_foreign_key "order_personalizations", "orders"
+  add_foreign_key "order_personalizations", "personalizations"
   add_foreign_key "orders", "products"
   add_foreign_key "orders", "users"
+  add_foreign_key "personalizations", "products"
   add_foreign_key "products", "categories"
   add_foreign_key "products", "users"
 end

@@ -26,7 +26,7 @@ class OrdersController < ApplicationController
   def order_params
     params.require(:order).permit(
       :rut, :bussines_name, :quantity, :product_id,
-      :sourprise_shipping, :personalization, :retry_shipping, delivery_addresses_attributes: [:full_name, :contact, :date, :time, :address, :ship_cost]
+      :sourprise_shipping, :personalization, :retry_shipping, delivery_addresses_attributes: [:full_name, :contact, :date, :time, :address, :ship_cost], order_personalizations_attributes: [:id, :personalization_id, :_destroy]
     )
   end
 end
