@@ -22,8 +22,8 @@ Admin.create!(email: "admin@admin.com", password: 'asdasd', password_confirmatio
 
 puts "Creating suppliers"
 # Suppliers
-supplier1 = Supplier.create!(email: 'supplier1@gmail.com', password: 'asdasd', password_confirmation: 'asdasd', name: "supplier 1")
-supplier2 = Supplier.create!(email: 'supplier2@gmail.com', password: 'asdasd', password_confirmation: 'asdasd', name: "supplier 2")
+supplier1 = Supplier.create!(email: 'supplier1@gmail.com', password: 'asdasd', password_confirmation: 'asdasd', name: "Delicious Bites")
+supplier2 = Supplier.create!(email: 'supplier2@gmail.com', password: 'asdasd', password_confirmation: 'asdasd', name: "Fresh Feast")
 
 # Services
 regalos = 'Regalos'

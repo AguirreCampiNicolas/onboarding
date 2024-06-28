@@ -12,3 +12,6 @@ application.register("dropdown", DropdownController)
 
 import NestedFormController from "./nested_form_controller"
 application.register("nested-form", NestedFormController)
+
+import QuantityController from "./quantity_controller"
+application.register("quantity", QuantityController)

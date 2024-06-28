@@ -1,4 +1,4 @@
-<div class="px-23 mt-32">
+<div class="lg:px-23 lg:pt-32">
   <p class="hidden md:block text-text-tiny-lg text-planit-grey-1"><%= @product.type %> > <%= @product.category.name %></p>
   <div class="flex flex-col lg:flex-row gap-4">
     <!-- Parte Izquierda -->
@@ -11,51 +11,52 @@
     </div>
 
     <!-- Parte Derecha -->
-    <div class="lg:w-1/3 bg-white">
-      <p class="text-h2-sm lg:text-h5-lg mb-2"><%= @product.user.name %></p>
-      <p class="text-h1-sm lg:text-h4-lg text-gradient mb-2"><%= @product.name %></p>
+    <div class="lg:w-1/3 px-7">
+      <p class="text-h2-sm lg:text-h5-lg lg:mb-2"><%= @product.user.name.upcase %></p>
+      <p class="text-h1-sm lg:text-h4-lg text-gradient lg:mb-2"><%= @product.name %></p>
 
-      <div class="flex items-center mb-4">
+      <div class="flex items-center my-6">
         <%= image_tag 'icons/Estrella.svg', alt: 'Rate', class: 'w-5 pl-2' %>
         <span class="ml-2 text-h4-sm lg:text-small-text-lg text-gradient"><%= @product.rate %></span>
         <button class="ml-4 text-h5-sm lg:text-tiny-text-lg text-planit-dark-blue">Ver calificaciones</button>
       </div>
 
-      <div class="flex items-center mb-4">
-        <button class="px-2 border">-</button>
-        <span class="px-5 border">1</span>
-        <button class="px-2 border">+</button>
-      </div>
+      <%= form_with(url: new_order_path, method: :get, local: true, data: { controller: "quantity" }) do %>
+        <div class="flex items-center hidden lg:block">
+          <%= hidden_field_tag :quantity, 1, data: { quantity_target: "hiddenField" } %>
+          <button type="button" class="px-2 border border-planit-grey-1 rounded-l-sm" data-action="quantity#decrement">-</button>
+          <input type="text" id="quantity" class="px-5 py-0 border border-x-0 border-planit-grey-1 w-16 text-center" value="1" data-quantity-target="quantityField" readonly />
+          <button type="button" class="px-2 border border-planit-grey-1 rounded-r-sm" data-action="quantity#increment">+</button>
+        </div>
 
-      <div class="mb-4 hidden lg:block">
-        <h4 class="text-h6-lg mb-2">Personalizar pedido</h4>
-        <% @product.personalizations.each do |personalization| %>
-          <div class="flex items-center justify-between mb-2">
-            <div class="flex items-center">
-              <%= check_box_tag "order[order_personalizations_attributes][][personalization_id]", personalization.id, class: "mr-2" %>
-              <span><%= personalization.name %></span>
+        <div class="mb-8 mt-16 hidden lg:block">
+          <h4 class="text-h6-lg mb-2">Personalizar pedido</h4>
+          <% @product.personalizations.each do |personalization| %>
+            <div class="flex items-center justify-between mb-2">
+              <div class="flex items-center">
+                <label class="custom-checkbox mr-14">
+                  <%= check_box_tag "personalization_ids[]", personalization.id, false %>
+                  <span class="checkmark"></span>
+                </label>
+                <span><%= personalization.name %></span>
+              </div>
+              <span class="text-gray-500">+<%= number_to_currency(personalization.price) %></span>
             </div>
-            <span class="text-gray-500">+<%= number_to_currency(personalization.price) %></span>
-          </div>
-        <% end %>
+          <% end %>
+        </div>
 
-      <p class="hidden lg:block text-small-text-light-lg mb-4">¿Necesitas más personalización? <a href="#" class="text-blue-500 underline">Hablar con un ejecutivo</a></p>
+        <p class="hidden lg:block text-small-text-light-lg text-planit-gray-5˙">¿Necesitas más personalización?</p>
+        <a href="#" class="hidden lg:block text-small-text-light-lg  text-gradient">Hablar con un ejecutivo</a>
 
-      <div class="flex justify-between items-center mb-4">
-        <span class="text-lg font-bold">TOTAL</span>
-        <span class="text-lg font-bold text-gradient"> $100 + IVA</span>
-      </div>
+        <div class="flex justify-between items-center mb-8 mt-16">
+          <span class="text-h5-lg">TOTAL</span>
+          <span class="text-h5-lg"> $100 <span class="text-h6-lg">+ IVA</span></span>
+        </div>
 
-      <button class="w-full py-2 bg-blue-500 text-white rounded-lg mb-2">Comprar</button>
-      <a href="#" class="block text-center text-blue-500 underline">Imprimir presupuesto</a>
+        <%= hidden_field_tag :product_id, @product.id %>
+        <button type="submit" class="w-full py-2 bg-planit-blue-gradient text-white rounded-lg mb-2">COMPRAR</button>
+      <% end %>
+      <a href="#" class="block text-center text-gradient text-small-text-light-lg">Imprimir presupuesto</a>
     </div>
   </div>
 </div>
-
-<h3>Personalizaciones</h3>
-<% @product.personalizations.each do |personalization| %>
-  <div>
-    <%= check_box_tag "order[order_personalizations_attributes][][personalization_id]", personalization.id %>
-    <%= personalization.name %> (<%= number_to_currency(personalization.price) %>)
-  </div>
-<% end %>
