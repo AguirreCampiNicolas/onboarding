@@ -23,7 +23,8 @@ module.exports = {
         'planit-grey-3': '#EEEEEE',
         'planit-grey-4': '#FBFBFB',
         'planit-grey-5': '#959595',
-        'planit-white': '#FFFFFF'
+        'planit-white': '#FFFFFF',
+        'transparent-black': 'rgba(0, 0, 0, 0.75)'
       },
       boxShadow: {
         'planit': '2px 2px 10px 0px #00000040'

@@ -1,9 +1,14 @@
 <div class="hidden lg:block">
   <%= render 'shared/navbar' %>
 </div>
-
-<div class="lg:px-23 lg:pt-32">
-  <p class="hidden md:block text-text-tiny-lg text-planit-grey-1"><%= @product.type %> > <%= @product.category.name %></p>
+<!-- Navbar transparente -->
+<div class="absolute h-44 top-0 left-0 w-full z-10 bg-gradient-to-b from-transparent-black to-transparent lg:hidden">
+  <div class="flex items-center p-4 pt-12">
+    <span class="mr-4 text-white text-h5-sm"><</span><%= link_to "Volver", products_path, class: "text-white text-h5-sm" %>
+  </div>
+</div>
+<div class="lg:px-23 lg:pt-32 mb-40">
+  <p class="hidden lg:block text-text-tiny-lg text-planit-grey-1"><%= @product.type %> > <%= @product.category.name %></p>
   <div class="flex flex-col lg:flex-row gap-4">
     <!-- Parte Izquierda -->
     <div class="lg:w-2/3">
@@ -19,18 +24,21 @@
       <p class="text-h2-sm lg:text-h5-lg lg:mb-2"><%= @product.user.name.upcase %></p>
       <p class="text-h1-sm lg:text-h4-lg text-gradient lg:mb-2"><%= @product.name %></p>
 
-      <div class="flex items-center my-6">
+      <div class="flex items-center mb-16">
         <%= image_tag 'icons/Estrella.svg', alt: 'Rate', class: 'w-5 pl-2' %>
         <span class="ml-2 text-h4-sm lg:text-small-text-lg text-gradient"><%= @product.rate %></span>
         <button class="ml-4 text-h5-sm lg:text-tiny-text-lg text-planit-dark-blue">Ver calificaciones</button>
       </div>
 
+      <div class="lg:hidden" name="lg-description-container">
+        <p class="text-h5-lg">Descripción</p>
+        <p class="text-lg"><%= @product.description %></p>
+      </div>
+
       <%= form_with(url: new_order_path, method: :get, local: true, data: { controller: "quantity" }) do %>
         <div class="flex items-center hidden lg:block">
-          <%= hidden_field_tag :quantity, 1, data: { quantity_target: "hiddenField" } %>
-          <button type="button" class="px-2 border border-planit-grey-1 rounded-l-sm" data-action="quantity#decrement">-</button>
-          <input type="text" id="quantity" class="px-5 py-0 border border-x-0 border-planit-grey-1 w-16 text-center" value="1" data-quantity-target="quantityField" readonly />
-          <button type="button" class="px-2 border border-planit-grey-1 rounded-r-sm" data-action="quantity#increment">+</button>
+          <%= hidden_field_tag :quantity, 1, data: { quantity_target: "hiddenQuantityField" } %>
+          <button type="button" class="px-2 border border-planit-grey-1 rounded-l-sm" data-action="quantity#decrement">-</button><input type="text" id="quantity" class="px-5 py-0 border border-x-0 border-planit-grey-1 w-16 text-center" value="1" data-quantity-target="quantityField" readonly /><button type="button" class="px-2 border border-planit-grey-1 rounded-r-sm" data-action="quantity#increment">+</button>
         </div>
 
         <div class="mb-8 mt-16 hidden lg:block">
@@ -53,12 +61,18 @@
         <a href="#" class="hidden lg:block text-small-text-light-lg  text-gradient">Hablar con un ejecutivo</a>
 
         <div class="flex justify-between items-center mb-8 mt-16">
-          <span class="text-h5-lg">TOTAL</span>
-          <span class="text-h5-lg"> $100 <span class="text-h6-lg">+ IVA</span></span>
+          <span class="hidden lg:block text-h5-lg">TOTAL</span>
+          <span class="hidden lg:block text-h5-lg" data-quantity-target="totalField">$<%= @product.price %><span class="text-h6-lg"> + IVA</span></span>
+          <span class="lg:hidden text-gradient text-h3-sm"><%= number_to_currency(@product.price) %> / unidad</span>
         </div>
 
+        <%= hidden_field_tag :product_price, @product.price, data: { quantity_target: "hiddenPriceField" } %>
         <%= hidden_field_tag :product_id, @product.id %>
-        <button type="submit" class="w-full py-2 bg-planit-blue-gradient text-white rounded-lg mb-2">COMPRAR</button>
+        <button type="submit" class="hidden lg:block w-full py-2 bg-planit-blue-gradient text-white rounded-lg mb-2 drop-shadow-lg">COMPRAR</button>
+        <div class="lg:hidden flex justify-between items-center mb-8 mt-16">
+          <button type="button" class="h-9 px-2 border border-planit-grey-1 rounded-l-sm" data-action="quantity#decrement">-</button><input type="text" id="quantity" class="h-9 px-5 py-0 border border-x-0 border-planit-grey-1 w-16 text-center" value="1" data-quantity-target="quantityMobileField" readonly /><button type="button" class="h-9 px-2 border border-planit-grey-1 rounded-r-sm mr-8" data-action="quantity#increment">+</button>
+          <button type="submit" class="lg:hidden w-full py-2 bg-planit-blue-gradient text-white rounded-lg drop-shadow-lg">COMPRAR</button>
+        </div>
       <% end %>
       <a href="#" class="block text-center text-gradient text-small-text-light-lg">Imprimir presupuesto</a>
     </div>
