@@ -47,7 +47,7 @@
             <div class="flex items-center justify-between mb-2">
               <div class="flex items-center">
                 <label class="custom-checkbox mr-14">
-                  <%= check_box_tag "personalization_ids[]", personalization.id, false %>
+                  <%= check_box_tag "personalization_ids[]", personalization.id, false, data: { action: "change->quantity#updateTotal", price: personalization.price } %>
                   <span class="checkmark"></span>
                 </label>
                 <span><%= personalization.name %></span>

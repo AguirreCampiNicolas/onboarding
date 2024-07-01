@@ -25,6 +25,12 @@ export default class extends Controller {
     let quantity = parseInt(this.quantityFieldTarget.value, 10)
     let price = parseFloat(this.hiddenPriceFieldTarget.value)
     let total = quantity * price
+
+    this.element.querySelectorAll('input[type="checkbox"]:checked').forEach((checkbox) => {
+      const price = parseFloat(checkbox.dataset.price)
+      total += price * quantity
+    })
+
     this.totalFieldTarget.innerText = `$${total.toFixed(2)} + IVA`
   }
 }
