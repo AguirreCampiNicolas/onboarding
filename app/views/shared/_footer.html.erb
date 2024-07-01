@@ -1,0 +1,21 @@
+<div class="hidden lg:block absolute px-4 bottom-0 w-full mb-6">
+  <hr class="border-planit-grey-2 mb-1" />
+  <div class="flex justify-between items-center">
+    <p class="text-small-text-lg text-planit-grey-2">Copyright  ©2021</p>
+
+    <div class="flex-shrink-0">
+      <%= link_to root_path do %>
+        <%= image_tag "icons/Eagerworks.svg", alt: "Logo", class: "h-5 w-auto object-cover" %>
+      <% end %>
+    </div>
+
+    <div class="flex space-x-4">
+      <a href="https://www.linkedin.com" target="_blank" class="text-planit-grey-2 hover:text-gray-900">
+        <%= image_tag 'icons/Linkedin.svg', alt: 'LinkedIn', class: 'h-5 w-auto' %>
+      </a>
+      <a href="https://www.instagram.com" target="_blank" class="text-planit-grey-2 hover:text-gray-900">
+        <%= image_tag 'icons/Instagram.svg', alt: 'Instagram', class: 'h-5 w-auto' %>
+      </a>
+    </div>
+  </div>
+</div>
